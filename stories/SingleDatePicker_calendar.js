@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 import SingleDatePickerWrapper from '../examples/SingleDatePickerWrapper';
+import DropDown from '../src/components/DropDown';
 
 import { VERTICAL_ORIENTATION, ANCHOR_RIGHT, OPEN_UP } from '../src/constants';
 
@@ -44,6 +45,9 @@ const TestCustomInfoPanel = () => (
   </div>
 );
 
+const yearList = ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'];
+
+
 storiesOf('SDP - Calendar Props', module)
   .add('default', withInfo()(() => (
     <SingleDatePickerWrapper autoFocus />
@@ -60,6 +64,22 @@ storiesOf('SDP - Calendar Props', module)
     <SingleDatePickerWrapper
       numberOfMonths={1}
       autoFocus
+    />
+  )))
+  .add('DropDown', withInfo()(() => (
+    <DropDown 
+    title="2018"
+    list={[{
+      id: "2018",
+      title: "2018",
+      selected: true,
+      key: 'year'
+    },{
+      id: "2019",
+      title: "2019",
+      selected: false,
+      key: 'year'
+    }]}
     />
   )))
   .add('with custom day size', withInfo()(() => (
@@ -149,7 +169,7 @@ storiesOf('SDP - Calendar Props', module)
   .add('with info panel default', withInfo()(() => (
     <SingleDatePickerWrapper
       renderCalendarInfo={() => (
-        <TestCustomInfoPanel borderPosition='borderBottom'/>
+        <TestCustomInfoPanel borderPosition="borderBottom" />
       )}
       autoFocus
     />

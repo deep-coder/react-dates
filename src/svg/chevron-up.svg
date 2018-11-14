@@ -1,1 +1,26 @@
-<svg focusable="false" viewBox="0 0 1000 1000"><path d="M32.1 712.6l453.2-452.2c11-11 21-11 32 0l453.2 452.2c4 5 6 10 6 16 0 13-10 23-22 23-7 0-12-2-16-7L501.3 308.5 64.1 744.7c-4 5-9 7-15 7-7 0-12-2-17-7-9-11-9-21 0-32.1z"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Foundation/Icon/16px/chevron_up</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M10.5293755,5.8334631 L6.05054682,1.35432729 L1.46615043,5.83788788 C1.24339461,6.05574409 0.884228072,6.05377416 0.663929523,5.83348791 C0.443630975,5.61320167 0.44562299,5.25801703 0.668378815,5.04016081 L5.6561354,0.162112122 C5.87890102,-0.0557536737 6.23808674,-0.0537725883 6.45838112,0.166536901 L11.3360953,5.04458559 C11.55638,5.26488539 11.5543656,5.62006991 11.3315961,5.83791242 C11.1088266,6.05575492 10.7496602,6.0537629 10.5293755,5.8334631 Z" id="path-1"></path>
+    </defs>
+    <g id="Foundation/Icon/16px/chevron_up" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Foundation/Icon/24px/Dimentions"></g>
+        <g id="Foundation/Colors/Icons-Static" transform="translate(2.000000, 4.000000)">
+            <g>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#1F2532" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <g id="Foundation/Colors/Secondary/Gun-Metal" mask="url(#mask-2)" fill="#1F2532">
+                    <g transform="translate(-2.000000, -4.000000)" id="Foundation/Colors/Icons">
+                        <rect x="0" y="0" width="16" height="16"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <path d="" id="Path-20" stroke="#979797" fill-rule="nonzero"></path>
+    </g>
+</svg>

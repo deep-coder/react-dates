@@ -150,7 +150,10 @@ class CalendarDay extends React.PureComponent {
         onKeyDown={(e) => { this.onKeyDown(day, e); }}
         tabIndex={tabIndex}
       >
-        {renderDayContents ? renderDayContents(day, modifiers) : day.format('D')}
+        <div {...css(selected && styles.daySelected)}>
+          {' '}
+          {renderDayContents ? renderDayContents(day, modifiers) : day.format('D')}
+                </div>
       </td>
     );
   }
@@ -160,7 +163,16 @@ CalendarDay.propTypes = propTypes;
 CalendarDay.defaultProps = defaultProps;
 
 export { CalendarDay as PureCalendarDay };
-export default withStyles(({ reactDates: { color, font } }) => ({
+export default withStyles(({ reactDates: { color, font, typography } }) => ({
+  daySelected: {
+    background: color.selected.backgroundColor,
+    color: color.selected.color,
+    width: '24px',
+    height: '24px',
+    borderRadius: '50%',
+    lineHeight: '24px',
+    margin: 'auto',
+  },
   CalendarDay: {
     boxSizing: 'border-box',
     cursor: 'pointer',
@@ -177,9 +189,10 @@ export default withStyles(({ reactDates: { color, font } }) => ({
   },
 
   CalendarDay__default: {
-    border: `1px solid ${color.core.borderLight}`,
+    border: `0px solid ${color.core.borderLight}`,
     color: color.text,
     background: color.background,
+    ...typography.content1,
 
     ':hover': {
       background: color.core.borderLight,
@@ -262,13 +275,13 @@ export default withStyles(({ reactDates: { color, font } }) => ({
   },
 
   CalendarDay__selected: {
-    background: color.selected.backgroundColor,
-    border: `1px double ${color.selected.borderColor}`,
+    border: `0px double ${color.selected.borderColor}`,
+    borderRadius: '20px',
     color: color.selected.color,
 
     ':hover': {
-      background: color.selected.backgroundColor_hover,
-      border: `1px double ${color.selected.borderColor}`,
+      background: 'none',
+      border: `0px double ${color.selected.borderColor}`,
       color: color.selected.color_active,
     },
 
@@ -317,7 +330,7 @@ export default withStyles(({ reactDates: { color, font } }) => ({
 
   CalendarDay__blocked_out_of_range: {
     background: color.blocked_out_of_range.backgroundColor,
-    border: `1px solid ${color.blocked_out_of_range.borderColor}`,
+    border: `0px solid ${color.blocked_out_of_range.borderColor}`,
     color: color.blocked_out_of_range.color,
 
     ':hover': {

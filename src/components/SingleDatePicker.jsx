@@ -172,8 +172,13 @@ class SingleDatePicker extends React.PureComponent {
     }
   }
 
+  componentWillMount() {
+    console.log('Single Day Picker mount---->');
+  }
+
   /* istanbul ignore next */
   componentWillUnmount() {
+    console.log('Single Day Picker Unmount---->');
     if (this.removeEventListener) this.removeEventListener();
     if (this.enableScroll) this.enableScroll();
   }
@@ -647,4 +652,4 @@ export default withStyles(({ reactDates: { color, zIndex } }) => ({
     width: 15,
     fill: color.core.grayLighter,
   },
-}), { pureComponent: typeof React.PureComponent !== 'undefined' })(SingleDatePicker);
+}))(SingleDatePicker);

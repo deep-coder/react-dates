@@ -15,9 +15,7 @@
     "development": {
       "presets": ["airbnb"],
       "plugins": [
-        ["inline-react-svg", {
-          "svgo": false
-        }],
+        ["inline-react-svg"],
         ["transform-replace-object-assign", { "moduleSpecifier": "object.assign" }],
         "./scripts/pure-component-fallback.js",
       ],

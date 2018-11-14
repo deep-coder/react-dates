@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import momentPropTypes from 'react-moment-proptypes';
 import moment from 'moment';
 import omit from 'lodash/omit';
+import { withStyles, css } from 'react-with-styles';
 
 import SingleDatePicker from '../src/components/SingleDatePicker';
+import MonthSelector from '../src/components/MonthSelector';
+import YearSelector from '../src/components/YearSelector';
+import Button from '../src/components/Button';
 
 import { SingleDatePickerPhrases } from '../src/defaultPhrases';
 import SingleDatePickerShape from '../src/shapes/SingleDatePickerShape';
@@ -77,7 +81,7 @@ const defaultProps = {
   monthFormat: 'MMMM YYYY',
   phrases: SingleDatePickerPhrases,
 };
-
+const yearList = ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'];
 class SingleDatePickerWrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -88,6 +92,9 @@ class SingleDatePickerWrapper extends React.Component {
 
     this.onDateChange = this.onDateChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
+    this.onPrevMonthClick = this.onPrevMonthClick.bind(this);
+    this.onNextMonthClick = this.onNextMonthClick.bind(this);
+    this.onTodayCliked = this.onTodayCliked.bind(this);
   }
 
   onDateChange(date) {
@@ -96,6 +103,22 @@ class SingleDatePickerWrapper extends React.Component {
 
   onFocusChange({ focused }) {
     this.setState({ focused });
+  }
+
+  onPrevMonthClick(month, onMonthSelect, onYearSelect) {
+    return () => onMonthSelect(month, month.month() - 1);
+  }
+
+  onNextMonthClick(month, onMonthSelect, onYearSelect) {
+    return () => onMonthSelect(month, month.month() + 1);
+  }
+
+  onTodayCliked(month, onMonthSelect, onYearSelect) {
+    return () => {
+      this.setState({ date: moment() }, () => {
+        onMonthSelect(month, moment.months().indexOf(moment().format('MMMM')));
+      });
+    };
   }
 
   render() {
@@ -111,11 +134,29 @@ class SingleDatePickerWrapper extends React.Component {
     return (
       <SingleDatePicker
         {...props}
+        renderMonthElement={({ month, onMonthSelect, onYearSelect }) => (
+          <div {...css(props.styles.monthElementStyle)}>
+            <MonthSelector
+              onPrevMonthClick={this.onPrevMonthClick(month, onMonthSelect, onYearSelect)}
+              onNextMonthClick={this.onNextMonthClick(month, onMonthSelect, onYearSelect)}
+              monthLabel={moment.months(month.month())}
+            />
+
+            <YearSelector
+              month={month}
+              onYearSelect={onYearSelect}
+              minYear={2011}
+              maxYear={2030}
+            />
+            <Button onClick={this.onTodayCliked(month, onMonthSelect, onYearSelect)} label="Today" />
+          </div>
+        )}
         id="date_input"
         date={date}
         focused={focused}
         onDateChange={this.onDateChange}
         onFocusChange={this.onFocusChange}
+        weekDayFormat="ddd"
       />
     );
   }
@@ -123,5 +164,14 @@ class SingleDatePickerWrapper extends React.Component {
 
 SingleDatePickerWrapper.propTypes = propTypes;
 SingleDatePickerWrapper.defaultProps = defaultProps;
+export default withStyles(({
+  reactDates: {
+    color, font, spacing, typography,
+  },
+}) => ({
+  monthElementStyle :{
+    display:'flex',
+    justifyContent: 'space-around',
+  }
 
-export default SingleDatePickerWrapper;
+}), { pureComponent: typeof React.PureComponent !== 'undefined' })(SingleDatePickerWrapper);

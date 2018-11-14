@@ -229,21 +229,9 @@ export default withStyles(({ reactDates: { color, zIndex } }) => ({
   },
 
   DayPickerNavigation_button__default: {
-    border: `1px solid ${color.core.borderLight}`,
+    border: `0px solid ${color.core.borderLight}`,
     backgroundColor: color.background,
     color: color.placeholderText,
-
-    ':focus': {
-      border: `1px solid ${color.core.borderMedium}`,
-    },
-
-    ':hover': {
-      border: `1px solid ${color.core.borderMedium}`,
-    },
-
-    ':active': {
-      background: color.backgroundDark,
-    },
   },
 
   DayPickerNavigation_button__horizontal: {
@@ -253,8 +241,6 @@ export default withStyles(({ reactDates: { color, zIndex } }) => ({
     position: 'absolute',
     top: 18,
     lineHeight: 0.78,
-    borderRadius: 3,
-    padding: '6px 9px',
   },
 
   DayPickerNavigation_leftButton__horizontalDefault: {
@@ -262,21 +248,10 @@ export default withStyles(({ reactDates: { color, zIndex } }) => ({
   },
 
   DayPickerNavigation_rightButton__horizontalDefault: {
-    right: 22,
+    right: 100,
   },
 
   DayPickerNavigation_button__vertical: {
-  },
-
-  DayPickerNavigation_button__verticalDefault: {
-    padding: 5,
-    background: color.background,
-    boxShadow: '0 0 5px 2px rgba(0, 0, 0, 0.1)',
-    position: 'relative',
-    display: 'inline-block',
-    textAlign: 'center',
-    height: '100%',
-    width: '50%',
   },
 
   DayPickerNavigation_prevButton__verticalDefault: {

@@ -11,7 +11,9 @@ const core = {
   borderLighter: '#eceeee',
   borderBright: '#f4f5f5',
 
-  primary: '#00a699',
+  primary: '#4285F4',
+  primary_hover: '#0060FF',
+  aliceBlue: '#EBF4FF',
   primaryShade_1: '#33dacd',
   primaryShade_2: '#66e2da',
   primaryShade_3: '#80e8e0',
@@ -27,6 +29,36 @@ const core = {
 export default {
   reactDates: {
     zIndex: 0,
+    typography: {
+      heading4: {
+        fontSize: '14px',
+        fontWeight: '600',
+        lineHeight: '24px',
+        color: 'black',
+        characterSpacing: '0.3',
+      },
+      heading5: {
+        fontSize: '14px',
+        fontWeight: '600',
+        lineHeight: '19px',
+        color: 'black',
+        characterSpacing: '0.3',
+      },
+      content1: {
+        fontSize: '14px',
+        fontWeight: '400',
+        lineHeight: '17px',
+        color: 'black',
+        characterSpacing: '0.3',
+      },
+      Tertiary_Action: {
+        fontSize: '14px',
+        fontWeight: '600',
+        characterSpacing: '0.3',
+        lineHeight: '17px',
+        color: core.primary,
+      },
+    },
     border: {
       input: {
         border: 0,
@@ -51,9 +83,10 @@ export default {
 
     color: {
       core,
-
+      primary: core.primary,
+      primary_hover: core.primary_hover,
       disabled: core.grayLightest,
-
+      secondary_hover: core.aliceBlue,
       background: core.white,
       backgroundDark: '#f2f2f2',
       backgroundFocused: core.white,

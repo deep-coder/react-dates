@@ -822,18 +822,18 @@ class DayPicker extends React.PureComponent {
     const onNextMonthClick = orientation === VERTICAL_SCROLLABLE
       ? this.multiplyScrollableMonths
       : this.onNextMonthClick;
-
-    return (
-      <DayPickerNavigation
-        onPrevMonthClick={this.onPrevMonthClick}
-        onNextMonthClick={onNextMonthClick}
-        navPrev={navPrev}
-        navNext={navNext}
-        orientation={orientation}
-        phrases={phrases}
-        isRTL={isRTL}
-      />
-    );
+      // return (
+      //        <DayPickerNavigation
+      //           onPrevMonthClick={this.onPrevMonthClick}
+      //           onNextMonthClick={onNextMonthClick}
+      //           navPrev={navPrev}
+      //           navNext={navNext}
+      //           orientation={orientation}
+      //           phrases={phrases}
+      //           isRTL={isRTL}
+      //         />
+      //       );
+    return null;
   }
 
   renderWeekHeader(index) {
@@ -1135,6 +1135,7 @@ export default withStyles(({
     noScrollBarOnVerticalScrollable,
     spacing,
     zIndex,
+    typography,
   },
 }) => ({
   DayPicker: {
@@ -1199,6 +1200,8 @@ export default withStyles(({
     top: 62,
     zIndex: zIndex + 2,
     textAlign: 'left',
+    ...typography.heading5,
+
   },
 
   DayPicker_weekHeader__vertical: {
@@ -1233,6 +1236,7 @@ export default withStyles(({
     position: 'relative',
     overflow: 'hidden',
     borderRadius: 3,
+    zIndex: 4,
   },
 
   DayPicker_transitionContainer__horizontal: {

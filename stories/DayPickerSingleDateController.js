@@ -80,6 +80,8 @@ const datesList = [
   moment().add(13, 'days'),
 ];
 
+const yearList = ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'];
+
 storiesOf('DayPickerSingleDateController', module)
   .addDecorator(InfoPanelDecorator(dayPickerSingleDateControllerInfo))
   .add('default', withInfo()(() => (
@@ -139,9 +141,10 @@ storiesOf('DayPickerSingleDateController', module)
               value={month.year()}
               onChange={(e) => { onYearSelect(month, e.target.value); }}
             >
-              <option value={moment().year() - 1}>Last year</option>
-              <option value={moment().year()}>{moment().year()}</option>
-              <option value={moment().year() + 1}>Next year</option>
+{
+              yearList.map((year) => <option value={moment(year).year()}>{moment(year).year()}</option>)
+            }
+
             </select>
           </div>
         </div>
@@ -203,9 +206,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
-      isOutsideRange={day =>
-        !isInclusivelyAfterDay(day, moment()) ||
-        isInclusivelyAfterDay(day, moment().add(2, 'weeks'))
+      isOutsideRange={day => !isInclusivelyAfterDay(day, moment())
+        || isInclusivelyAfterDay(day, moment().add(2, 'weeks'))
       }
     />
   )))

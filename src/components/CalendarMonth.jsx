@@ -105,6 +105,9 @@ class CalendarMonth extends React.PureComponent {
     this.setCaptionRef = this.setCaptionRef.bind(this);
     this.setMonthTitleHeight = this.setMonthTitleHeight.bind(this);
   }
+  componentWillMount(){
+    console.log("Calendar day----> Mount");
+  }
 
   componentDidMount() {
     this.setMonthTitleHeightTimeout = setTimeout(this.setMonthTitleHeight, 0);
@@ -133,6 +136,7 @@ class CalendarMonth extends React.PureComponent {
   }
 
   componentWillUnmount() {
+    console.log("Calendar Component unmounting--->");
     if (this.setMonthTitleHeightTimeout) {
       clearTimeout(this.setMonthTitleHeightTimeout);
     }
@@ -245,7 +249,7 @@ CalendarMonth.defaultProps = defaultProps;
 
 export default withStyles(({ reactDates: { color, font, spacing } }) => ({
   CalendarMonth: {
-    background: color.background,
+    background: 'transparent',
     textAlign: 'center',
     verticalAlign: 'top',
     userSelect: 'none',

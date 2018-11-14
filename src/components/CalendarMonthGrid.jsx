@@ -375,7 +375,7 @@ export default withStyles(({
   },
 }) => ({
   CalendarMonthGrid: {
-    background: color.background,
+    background: 'transparent',
     textAlign: 'left',
     zIndex,
   },

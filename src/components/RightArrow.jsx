@@ -1,3 +1,5 @@
-import RightArrow from '../svg/arrow-right.svg';
+import React from 'react';
+import RightArrow from '../svg/icon-right.svg';
 
-export default RightArrow;
+const Right = () => <RightArrow />;
+export default Right;
