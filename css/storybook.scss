@@ -1,3 +1,4 @@
+@import url('https://d36263b6wju30t.cloudfront.net/theme/v1.0.1/css/basefont.css');
 body {
   background-color: rgba(0, 0, 0, 0.05);
   background-image: repeating-linear-gradient(0deg, transparent, transparent 7px, rgba(0, 0, 0, 0.2) 1px, transparent 8px), repeating-linear-gradient(90deg, transparent, transparent 7px, rgba(0, 0, 0, 0.2) 1px, transparent 8px);
@@ -6,7 +7,7 @@ body {
 
 html {
   box-sizing: border-box;
-  font-family: "Proxima-Nova";
+  font-family: "Proxima-Nova-Regular";
   font-size: 14px;
 }
 

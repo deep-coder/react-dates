@@ -24,9 +24,7 @@
     "production": {
       "presets": [["airbnb", { removePropTypes: true }]],
       "plugins": [
-        ["inline-react-svg", {
-          "svgo": false
-        }],
+        ["inline-react-svg"],
         ["transform-replace-object-assign", { "moduleSpecifier": "object.assign" }],
         "./scripts/pure-component-fallback.js",
       ],
@@ -35,9 +33,7 @@
     "cjs": {
       "presets": [["airbnb", { removePropTypes: true }]],
       "plugins": [
-        ["inline-react-svg", {
-          "svgo": false
-        }],
+        ["inline-react-svg"],
         ["transform-replace-object-assign", { "moduleSpecifier": "object.assign" }],
         "./scripts/pure-component-fallback.js",
       ],
@@ -46,9 +42,7 @@
     "esm": {
       "presets": [["airbnb", { modules: false, removePropTypes: true }]],
       "plugins": [
-        ["inline-react-svg", {
-          "svgo": false
-        }],
+        ["inline-react-svg"],
         ["transform-replace-object-assign", { "moduleSpecifier": "object.assign" }],
         "./scripts/pure-component-fallback.js",
       ],

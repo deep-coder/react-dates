@@ -147,11 +147,13 @@ function SingleDatePickerInput({
 
   return (
     <div
-      {...css(
+      {...css(     
         styles.SingleDatePickerInput,
+        
         disabled && styles.SingleDatePickerInput__disabled,
         isRTL && styles.SingleDatePickerInput__rtl,
         !noBorder && styles.SingleDatePickerInput__withBorder,
+        focused && styles.SingleDatePickerInput_InputFocused,
         block && styles.SingleDatePickerInput__block,
         showClearDate && styles.SingleDatePickerInput__showClearDate,
       )}
@@ -213,9 +215,12 @@ export default withStyles(({ reactDates: { border, color } }) => ({
     display: 'inline-block',
     backgroundColor: color.background,
   },
+  SingleDatePickerInput_InputFocused :{
+    border:`1px solid ${color.primary}`,
+  },
 
   SingleDatePickerInput__withBorder: {
-    borderColor: color.border,
+    borderColor: border.pickerInput.borderColor,
     borderWidth: border.pickerInput.borderWidth,
     borderStyle: border.pickerInput.borderStyle,
     borderRadius: border.pickerInput.borderRadius,
@@ -296,8 +301,11 @@ export default withStyles(({ reactDates: { border, color } }) => ({
     cursor: 'pointer',
     display: 'inline-block',
     verticalAlign: 'middle',
-    padding: 10,
-    margin: '0 5px 0 10px',
+    paddingTop:8,
+    paddingBottom: 5,
+    paddingRight: 5,
+    paddingLeft:5,
+    margin: '0 5px 0 5px',
   },
 
   SingleDatePickerInput_calendarIcon_svg: {

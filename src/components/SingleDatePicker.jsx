@@ -172,13 +172,9 @@ class SingleDatePicker extends React.PureComponent {
     }
   }
 
-  componentWillMount() {
-    console.log('Single Day Picker mount---->');
-  }
 
   /* istanbul ignore next */
   componentWillUnmount() {
-    console.log('Single Day Picker Unmount---->');
     if (this.removeEventListener) this.removeEventListener();
     if (this.enableScroll) this.enableScroll();
   }
@@ -409,7 +405,7 @@ class SingleDatePicker extends React.PureComponent {
           openDirection === OPEN_DOWN && styles.SingleDatePicker_picker__openDown,
           openDirection === OPEN_UP && styles.SingleDatePicker_picker__openUp,
           !withAnyPortal && openDirection === OPEN_DOWN && {
-            top: inputHeight + verticalSpacing,
+            top: '46px',
           },
           !withAnyPortal && openDirection === OPEN_UP && {
             bottom: inputHeight + verticalSpacing,

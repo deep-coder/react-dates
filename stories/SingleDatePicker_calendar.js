@@ -4,10 +4,24 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 import SingleDatePickerWrapper from '../examples/SingleDatePickerWrapper';
+import TDatePickerWrapper from '../examples/TDatePickerWrapper';
 import DropDown from '../src/components/DropDown';
+import CalendarIcon from '../src/components/CalendarIcon';
 
 import { VERTICAL_ORIENTATION, ANCHOR_RIGHT, OPEN_UP } from '../src/constants';
 
+const TestCustomInputIcon = () => (
+  <span
+    style={{
+      border: '1px solid #dce0e0',
+      backgroundColor: '#fff',
+      color: '#484848',
+      padding: '3px',
+    }}
+  >
+    C
+  </span>
+);
 const TestPrevIcon = () => (
   <span
     style={{
@@ -66,15 +80,21 @@ storiesOf('SDP - Calendar Props', module)
       autoFocus
     />
   )))
+  .add('single month TDatePicker', withInfo()(() => (
+    <TDatePickerWrapper 
+      customInputIcon={<CalendarIcon />}
+      inputIconPosition="after" 
+    />
+  )))
   .add('DropDown', withInfo()(() => (
     <DropDown 
-    title="2018"
-    list={[{
+      title="2018"
+      list={[{
       id: "2018",
       title: "2018",
       selected: true,
       key: 'year'
-    },{
+    }, {
       id: "2019",
       title: "2019",
       selected: false,

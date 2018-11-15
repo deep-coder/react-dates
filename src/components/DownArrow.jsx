@@ -1,3 +1,3 @@
-import DownArrow from '../svg/down_arrow_with_dropshadow.svg';
+import DownArrow from '../svg/chevron_down.svg';
 
 export default DownArrow;

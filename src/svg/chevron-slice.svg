@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Dimentions</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M10.5293755,0.166536901 C10.7496602,-0.053762897 11.1088266,-0.055754924 11.3315961,0.162087584 C11.5543656,0.379930093 11.55638,0.73511461 11.3360953,0.955414408 L6.45838112,5.8334631 C6.23808674,6.05377259 5.87890102,6.05575367 5.6561354,5.83788788 L0.668378815,0.959839187 C0.44562299,0.741982974 0.443630975,0.386798334 0.663929523,0.166512088 C0.884228072,-0.0537741585 1.24339461,-0.0557440898 1.46615043,0.162112123 L6.05054682,4.64567271 L10.5293755,0.166536901 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Foundation/Icon/16px/chevron_down">
+            <g id="Foundation/Icon/24px/dimensions"></g>
+            <g id="Foundation/Colors/Icons-Static" transform="translate(2.000000, 6.000000)">
+                <g>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#1F2532" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    <g id="Foundation/Colors/Secondary/Gun-Metal" mask="url(#mask-2)" fill="#1F2532">
+                        <g transform="translate(-2.000000, -6.000000)" id="Foundation/Colors/Icons">
+                            <rect x="0" y="0" width="16" height="16"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

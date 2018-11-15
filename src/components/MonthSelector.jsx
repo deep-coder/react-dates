@@ -22,11 +22,13 @@ export default withStyles(({ reactDates: {
     justifyContent: 'space-around',
   },
   monthNavIcon: {
+    paddingTop:5,
     cursor: 'pointer',
   },
   monthLabel: {
     minWidth: '90px',
     ...typography.heading4,
+    lineHeight:'27px'
   },
 
 }), { pureComponent: typeof React.PureComponent !== 'undefined' })(MonthSelector);

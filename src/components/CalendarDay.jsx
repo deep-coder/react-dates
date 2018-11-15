@@ -124,7 +124,6 @@ class CalendarDay extends React.PureComponent {
           useDefaultCursor && styles.CalendarDay__defaultCursor,
           styles.CalendarDay__default,
           isOutsideDay && styles.CalendarDay__outside,
-          modifiers.has('today') && styles.CalendarDay__today,
           modifiers.has('first-day-of-week') && styles.CalendarDay__firstDayOfWeek,
           modifiers.has('last-day-of-week') && styles.CalendarDay__lastDayOfWeek,
           modifiers.has('hovered-offset') && styles.CalendarDay__hovered_offset,
@@ -150,7 +149,14 @@ class CalendarDay extends React.PureComponent {
         onKeyDown={(e) => { this.onKeyDown(day, e); }}
         tabIndex={tabIndex}
       >
-        <div {...css(selected && styles.daySelected)}>
+        <div {...css(
+             selected && styles.daySelected,
+             !selected && styles.daysHover,
+             !selected && modifiers.has('today') && styles.CalendarDay__today,
+             isOutsideRange && styles.CalendarDay__blocked_out_of_range)
+             
+          }
+        >
           {' '}
           {renderDayContents ? renderDayContents(day, modifiers) : day.format('D')}
                 </div>
@@ -173,12 +179,25 @@ export default withStyles(({ reactDates: { color, font, typography } }) => ({
     lineHeight: '24px',
     margin: 'auto',
   },
+  daysHover:{
+    width: '24px',
+    height: '24px',
+    borderRadius: '50%',
+    lineHeight: '24px',
+    margin: 'auto',
+    border:`1px solid transparent`,  
+    ':hover':{ 
+      boxSizing: 'border-box',
+      background: color.secondary_hover,
+      border:`1px solid ${color.core.primary}`
+    
+    }
+  },
   CalendarDay: {
     boxSizing: 'border-box',
     cursor: 'pointer',
     fontSize: font.size,
     textAlign: 'center',
-
     ':active': {
       outline: 0,
     },
@@ -193,12 +212,6 @@ export default withStyles(({ reactDates: { color, font, typography } }) => ({
     color: color.text,
     background: color.background,
     ...typography.content1,
-
-    ':hover': {
-      background: color.core.borderLight,
-      border: `1px solid ${color.core.borderLight}`,
-      color: 'inherit',
-    },
   },
 
   CalendarDay__hovered_offset: {
@@ -335,7 +348,7 @@ export default withStyles(({ reactDates: { color, font, typography } }) => ({
 
     ':hover': {
       background: color.blocked_out_of_range.backgroundColor_hover,
-      border: `1px solid ${color.blocked_out_of_range.borderColor}`,
+      border: `0px solid ${color.blocked_out_of_range.borderColor}`,
       color: color.blocked_out_of_range.color_active,
     },
 
@@ -348,7 +361,14 @@ export default withStyles(({ reactDates: { color, font, typography } }) => ({
 
   CalendarDay__selected_start: {},
   CalendarDay__selected_end: {},
-  CalendarDay__today: {},
+  CalendarDay__today: {
+    width: '24px',
+    height: '24px',
+    borderRadius: '50%',
+    lineHeight: '24px',
+    margin: 'auto',
+    background:color.secondary_hover
+  },
   CalendarDay__firstDayOfWeek: {},
   CalendarDay__lastDayOfWeek: {},
 }), { pureComponent: typeof React.PureComponent !== 'undefined' })(CalendarDay);

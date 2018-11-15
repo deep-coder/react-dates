@@ -1,4 +1,4 @@
-import LeftArrow from '../svg/icon-left.svg';
+import LeftArrow from '../svg/chevron_left.svg';
 
 
 export default LeftArrow;

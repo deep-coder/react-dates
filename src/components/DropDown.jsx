@@ -17,10 +17,6 @@ class Dropdown extends Component {
     this.toggleList = this.toggleList.bind(this);
   }
 
-  componentWillMount() {
-    console.log('component mount--->');
-  }
-
   handleClickOutside(e) {
     this.setState({
       listOpen: false,
@@ -93,6 +89,7 @@ export default withStyles(({
   DropDownExpandMore: {
     display: 'flex',
     width:'16px',
+    padding:2,
   },
   DropDownList: {
     transition: 'all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s',

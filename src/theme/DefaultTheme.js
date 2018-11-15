@@ -64,20 +64,21 @@ export default {
         border: 0,
         borderTop: 0,
         borderRight: 0,
-        borderBottom: '2px solid transparent',
+        borderBottom: '0px solid transparent',
         borderLeft: 0,
         outlineFocused: 0,
         borderFocused: 0,
         borderTopFocused: 0,
         borderLeftFocused: 0,
-        borderBottomFocused: `2px solid ${core.primary_dark}`,
+        borderBottomFocused: `0px solid ${core.primary_dark}`,
         borderRightFocused: 0,
         borderRadius: 0,
       },
       pickerInput: {
+        borderColor:'#969AA3',
         borderWidth: 1,
         borderStyle: 'solid',
-        borderRadius: 2,
+        borderRadius: 3,
       },
     },
 
@@ -157,7 +158,7 @@ export default {
         borderColor_hover: core.primary,
         color: core.white,
         color_active: core.white,
-        color_hover: core.white,
+        color_hover: core.primary_hover,
       },
 
       blocked_calendar: {
@@ -191,8 +192,8 @@ export default {
       captionPaddingBottom: 37,
       inputPadding: 0,
       displayTextPaddingVertical: undefined,
-      displayTextPaddingTop: 11,
-      displayTextPaddingBottom: 9,
+      displayTextPaddingTop: 5,
+      displayTextPaddingBottom: 5,
       displayTextPaddingHorizontal: undefined,
       displayTextPaddingLeft: 11,
       displayTextPaddingRight: 11,
@@ -205,7 +206,7 @@ export default {
     },
 
     sizing: {
-      inputWidth: 130,
+      inputWidth: 180,
       inputWidth_small: 97,
       arrowWidth: 24,
     },
@@ -216,7 +217,7 @@ export default {
       size: 14,
       captionSize: 18,
       input: {
-        size: 19,
+        size: 14,
         lineHeight: '24px',
         size_small: 15,
         lineHeight_small: '18px',

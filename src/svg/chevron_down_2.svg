@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>Foundation/Icon/16px/chevron_down</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Foundation/Icon/16px/chevron_down" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M12.5293755,6.1665369 C12.7496602,5.9462371 13.1088266,5.94424508 13.3315961,6.16208758 C13.5543656,6.37993009 13.55638,6.73511461 13.3360953,6.95541441 L8.45838112,11.8334631 C8.23808674,12.0537726 7.87890102,12.0557537 7.6561354,11.8378879 L2.66837882,6.95983919 C2.44562299,6.74198297 2.44363097,6.38679833 2.66392952,6.16651209 C2.88422807,5.94622584 3.24339461,5.94425591 3.46615043,6.16211212 L8.05054682,10.6456727 L12.5293755,6.1665369 Z" id="Mask" fill="#1F2532"></path>
+    </g>
+</svg>

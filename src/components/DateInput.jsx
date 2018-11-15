@@ -240,7 +240,7 @@ class DateInput extends React.PureComponent {
             {...css(
               styles.DateInput_fang,
               openDirection === OPEN_DOWN && {
-                top: inputHeight + verticalSpacing - FANG_HEIGHT_PX - 1,
+                top: '32px',
               },
               openDirection === OPEN_UP && {
                 bottom: inputHeight + verticalSpacing - FANG_HEIGHT_PX - 1,
@@ -279,7 +279,7 @@ export default withStyles(({
   DateInput: {
     margin: 0,
     padding: spacing.inputPadding,
-    background: color.background,
+    background: 'transparent',
     position: 'relative',
     display: 'inline-block',
     width: sizing.inputWidth,
@@ -302,9 +302,8 @@ export default withStyles(({
   DateInput_input: {
     fontWeight: 200,
     fontSize: font.input.size,
-    lineHeight: font.input.lineHeight,
     color: color.text,
-    backgroundColor: color.background,
+    backgroundColor: 'transparent',
     width: '100%',
     padding: `${spacing.displayTextPaddingVertical}px ${spacing.displayTextPaddingHorizontal}px`,
     paddingTop: spacing.displayTextPaddingTop,
@@ -340,11 +339,11 @@ export default withStyles(({
 
   DateInput_input__focused: {
     outline: border.input.outlineFocused,
-    background: color.backgroundFocused,
+    background: 'transparent',
     border: border.input.borderFocused,
     borderTop: border.input.borderTopFocused,
     borderRight: border.input.borderRightFocused,
-    borderBottom: border.input.borderBottomFocused,
+    borderBottom: border.input.borderRightFocused,
     borderLeft: border.input.borderLeftFocused,
   },
 

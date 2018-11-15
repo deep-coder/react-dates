@@ -9,6 +9,8 @@ export default withStyles(({ reactDates: { color, font, spacing, typography } })
   primaryButton: {
     border: '0px',
     color: color.primary,
+    paddingRight:0,
+    fontFamily:'Proxima-Nova-Regular',
     ...typography.Tertiary_Action,
     cursor: 'pointer',
     ':hover': {
