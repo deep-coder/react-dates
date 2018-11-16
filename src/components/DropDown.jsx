@@ -92,6 +92,7 @@ export default withStyles(({
     padding:2,
   },
   DropDownList: {
+    fontWeight:'300',
     transition: 'all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s',
     listStyle: 'none',
     width: '88px',

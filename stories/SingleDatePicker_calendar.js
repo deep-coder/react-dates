@@ -55,7 +55,7 @@ const TestCustomInfoPanel = () => (
       color: '#484848',
     }}
   >
-    &#x2755; Some useful info here
+   There are some slots which I can place
   </div>
 );
 
@@ -83,7 +83,14 @@ storiesOf('SDP - Calendar Props', module)
   .add('single month TDatePicker', withInfo()(() => (
     <TDatePickerWrapper 
       customInputIcon={<CalendarIcon />}
-      inputIconPosition="after" 
+      inputIconPosition="after"
+      minYear={2000}
+      maxYear={2030}
+    
+      // calendarInfoPosition="after"
+      // renderCalendarInfo={() => (
+      //   <TestCustomInfoPanel />
+      // )}
     />
   )))
   .add('DropDown', withInfo()(() => (

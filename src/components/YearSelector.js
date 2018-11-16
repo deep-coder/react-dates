@@ -4,18 +4,12 @@ import DropDown from './DropDown';
 class YearSelector extends Component {
   constructor(props) {
     super(props);
-    const minYear = props.minYear ? props.minYear : 1990;
-    const maxYear = props.maxYear ? props.maxYear : 2050;
-
+    const { minYear, maxYear } = props;
     const options = [];
     const currentYear = props.month.year();
     let selected = false;
     for (let i = minYear; i <= maxYear; i++) {
-      if (currentYear === i) {
-        selected = true;
-      } else {
-        selected = false;
-      }
+      selected = currentYear === i;
       options.push(
         {
           id: `${i - minYear}`,

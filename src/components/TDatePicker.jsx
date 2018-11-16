@@ -27,9 +27,13 @@ const propTypes = {
     'onFocusChange',
   ]),
   onDateSelect: PropTypes.func.isRequired,
+  minYear: PropTypes.number,
+  maxYear: PropTypes.number,
 };
 
 const defaultProps = {
+  minYear:2011,
+  maxYear:2030,
   // example props for the demo
   autoFocus: false,
   initialDate: null,
@@ -146,8 +150,8 @@ class TDatePicker extends React.Component {
             <YearSelector
               month={month}
               onYearSelect={onYearSelect}
-              minYear={2011}
-              maxYear={2030}
+              minYear={props.minYear}
+              maxYear={props.maxYear}
             />
             <Button onClick={this.onTodayCliked(month, onMonthSelect)} label="Today" />
           </div>

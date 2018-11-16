@@ -1174,6 +1174,7 @@ export default withStyles(({
 
   DayPicker_focusRegion: {
     outline: 'none',
+    boxShadow: '0 2px 8px 0 rgba(22,22,22,0.32)'
   },
 
   DayPicker_calendarInfo__horizontal: {
