@@ -11,23 +11,24 @@ class Dropdown extends Component {
     super(props);
     this.state = {
       listOpen: false,
-      headerTitle: this.props.title,
+      headerTitle: props.title,
     };
     this.selectItem = this.selectItem.bind(this);
     this.toggleList = this.toggleList.bind(this);
   }
 
-  handleClickOutside(e) {
+  handleClickOutside() {
     this.setState({
       listOpen: false,
     });
   }
 
   selectItem(title, id, stateKey) {
+    const { resetThenSet } = this.props;
     this.setState({
       headerTitle: `${title}`,
       listOpen: false,
-    }, this.props.resetThenSet(id, stateKey));
+    }, resetThenSet(id, stateKey));
   }
 
   toggleList() {
@@ -41,17 +42,22 @@ class Dropdown extends Component {
     const { listOpen, headerTitle } = this.state;
     return (
       <div {...css(styles.DropDownWrapper)}>
-        <div {...css(styles.DropDownHeader)} onClick={this.toggleList}>
+        <div {...css(styles.DropDownHeader)} onClick={this.toggleList} role="button" tabIndex={0}>
           <div {...css(styles.DropDownHeaderTitle)}>{headerTitle}</div>
           <div {...css(styles.DropDownExpandMore)}><DownArrow /></div>
         </div>
-        {listOpen && (<ul {...css(styles.DropDownList)}>
-          {list.map(item => (
-            <li {...css(styles.DropDownListItem, item.selected && styles.DropDownYearSelected)} key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>
-              {item.title}
-            </li>
-          ))}
-                      </ul>
+        {listOpen && (
+          <ul {...css(styles.DropDownList)}>
+            {list.map(item => (
+              <li
+                {...css(styles.DropDownListItem, item.selected && styles.DropDownYearSelected)}
+                key={item.id}
+                onClick={() => this.selectItem(item.title, item.id, item.key)}
+              >
+                {item.title}
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     );
@@ -60,7 +66,7 @@ class Dropdown extends Component {
 
 export default withStyles(({
   reactDates: {
-    color, font, spacing, typography,
+    color, typography,
   },
 }) => ({
   DropDownWrapper: {
@@ -88,11 +94,11 @@ export default withStyles(({
   },
   DropDownExpandMore: {
     display: 'flex',
-    width:'16px',
-    padding:2,
+    width: '16px',
+    padding: 2,
   },
   DropDownList: {
-    fontWeight:'300',
+    fontWeight: '300',
     transition: 'all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s',
     listStyle: 'none',
     width: '88px',

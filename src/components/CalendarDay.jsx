@@ -150,16 +150,17 @@ class CalendarDay extends React.PureComponent {
         tabIndex={tabIndex}
       >
         <div {...css(
-             selected && styles.daySelected,
-             !selected && styles.daysHover,
-             !selected && modifiers.has('today') && styles.CalendarDay__today,
-             isOutsideRange && styles.CalendarDay__blocked_out_of_range)
-             
+          selected && styles.daySelected,
+          !selected && styles.daysHover,
+          !selected && modifiers.has('today') && styles.CalendarDay__today,
+          isOutsideRange && styles.CalendarDay__blocked_out_of_range,
+        )
+
           }
         >
           {' '}
           {renderDayContents ? renderDayContents(day, modifiers) : day.format('D')}
-                </div>
+        </div>
       </td>
     );
   }
@@ -179,19 +180,19 @@ export default withStyles(({ reactDates: { color, font, typography } }) => ({
     lineHeight: '24px',
     margin: 'auto',
   },
-  daysHover:{
+  daysHover: {
     width: '24px',
     height: '24px',
     borderRadius: '50%',
     lineHeight: '24px',
     margin: 'auto',
-    border:`1px solid transparent`,  
-    ':hover':{ 
+    border: '1px solid transparent',
+    ':hover': {
       boxSizing: 'border-box',
       background: color.secondary_hover,
-      border:`1px solid ${color.core.primary}`
-    
-    }
+      border: `1px solid ${color.core.primary}`,
+
+    },
   },
   CalendarDay: {
     boxSizing: 'border-box',
@@ -367,7 +368,7 @@ export default withStyles(({ reactDates: { color, font, typography } }) => ({
     borderRadius: '50%',
     lineHeight: '24px',
     margin: 'auto',
-    background:color.secondary_hover
+    background: color.secondary_hover,
   },
   CalendarDay__firstDayOfWeek: {},
   CalendarDay__lastDayOfWeek: {},

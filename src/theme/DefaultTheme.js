@@ -75,7 +75,7 @@ export default {
         borderRadius: 0,
       },
       pickerInput: {
-        borderColor:'#969AA3',
+        borderColor: '#969AA3',
         borderWidth: 1,
         borderStyle: 'solid',
         borderRadius: 3,

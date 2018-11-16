@@ -29,11 +29,57 @@ const propTypes = {
   onDateSelect: PropTypes.func.isRequired,
   minYear: PropTypes.number,
   maxYear: PropTypes.number,
+  id: PropTypes.string,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
+  screenReaderInputMessage: PropTypes.string,
+  showClearDate: PropTypes.bool,
+  showDefaultInputIcon: PropTypes.bool,
+  customInputIcon: null,
+  block: PropTypes.bool,
+  small: PropTypes.bool,
+  regular: PropTypes.bool,
+  verticalSpacing: undefined,
+  keepFocusOnInput: PropTypes.bool,
+
+  // calendar presentation and interaction related props
+  renderMonthText: null,
+  orientation: HORIZONTAL_ORIENTATION,
+  anchorDirection: ANCHOR_LEFT,
+  horizontalMargin: 0,
+  withPortal: PropTypes.bool,
+  withFullScreenPortal: PropTypes.bool,
+  initialVisibleMonth: null,
+  numberOfMonths: 2,
+  keepOpenOnDateSelect: PropTypes.bool,
+  reopenPickerOnClearDate: PropTypes.bool,
+  isRTL: PropTypes.bool,
+
+  // navigation related props
+  navPrev: null,
+  navNext: null,
+  onPrevMonthClick: PropTypes.func,
+  onNextMonthClick: PropTypes.func,
+  onClose: PropTypes.func,
+
+  // day presentation and interaction related props
+  renderCalendarDay: undefined,
+  renderDayContents: null,
+  enableOutsideDays: PropTypes.bool,
+  isDayBlocked: PropTypes.func,
+  isOutsideRange: PropTypes.func,
+  isDayHighlighted: PropTypes.func,
+
+  // internationalization props
+  displayFormat: PropTypes.func,
+  monthFormat: PropTypes.string,
+  phrases: PropTypes.Object,
 };
 
 const defaultProps = {
-  minYear:2011,
-  maxYear:2030,
+  minYear: 2011,
+  maxYear: 2030,
   // example props for the demo
   autoFocus: false,
   initialDate: null,
@@ -102,19 +148,20 @@ class TDatePicker extends React.Component {
   }
 
   onDateChange(date) {
-    this.props.onDateSelect(date);
-    this.setState({ date });   
+    const { onDateSelect } = this.props;
+    onDateSelect(date);
+    this.setState({ date });
   }
 
   onFocusChange({ focused }) {
     this.setState({ focused });
   }
 
-  onPrevMonthClick(month, onMonthSelect, onYearSelect) {
+  onPrevMonthClick(month, onMonthSelect) {
     return () => onMonthSelect(month, month.month() - 1);
   }
 
-  onNextMonthClick(month, onMonthSelect, onYearSelect) {
+  onNextMonthClick(month, onMonthSelect) {
     return () => onMonthSelect(month, month.month() + 1);
   }
 
@@ -174,11 +221,7 @@ class TDatePicker extends React.Component {
 
 TDatePicker.propTypes = propTypes;
 TDatePicker.defaultProps = defaultProps;
-export default withStyles(({
-  reactDates: {
-    color, font, spacing, typography,
-  },
-}) => ({
+export default withStyles(() => ({
   monthElementStyle: {
     display: 'flex',
     justifyContent: 'space-around',

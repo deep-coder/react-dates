@@ -147,9 +147,9 @@ function SingleDatePickerInput({
 
   return (
     <div
-      {...css(     
+      {...css(
         styles.SingleDatePickerInput,
-        
+
         disabled && styles.SingleDatePickerInput__disabled,
         isRTL && styles.SingleDatePickerInput__rtl,
         !noBorder && styles.SingleDatePickerInput__withBorder,
@@ -215,8 +215,8 @@ export default withStyles(({ reactDates: { border, color } }) => ({
     display: 'inline-block',
     backgroundColor: color.background,
   },
-  SingleDatePickerInput_InputFocused :{
-    border:`1px solid ${color.primary}`,
+  SingleDatePickerInput_InputFocused: {
+    border: `1px solid ${color.primary}`,
   },
 
   SingleDatePickerInput__withBorder: {
@@ -301,10 +301,10 @@ export default withStyles(({ reactDates: { border, color } }) => ({
     cursor: 'pointer',
     display: 'inline-block',
     verticalAlign: 'middle',
-    paddingTop:8,
+    paddingTop: 8,
     paddingBottom: 5,
     paddingRight: 5,
-    paddingLeft:5,
+    paddingLeft: 5,
     margin: '0 5px 0 5px',
   },
 

@@ -12,7 +12,6 @@ import { DayPickerPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 
 import CalendarMonthGrid from './CalendarMonthGrid';
-import DayPickerNavigation from './DayPickerNavigation';
 import DayPickerKeyboardShortcuts, {
   TOP_LEFT,
   TOP_RIGHT,
@@ -807,32 +806,32 @@ class DayPicker extends React.PureComponent {
 
   renderNavigation() {
     const {
-      navPrev,
-      navNext,
+      // navPrev,
+      // navNext,
       noNavButtons,
-      orientation,
-      phrases,
-      isRTL,
+      // orientation,
+      // phrases,
+      // isRTL,
     } = this.props;
 
     if (noNavButtons) {
       return null;
     }
 
-    const onNextMonthClick = orientation === VERTICAL_SCROLLABLE
-      ? this.multiplyScrollableMonths
-      : this.onNextMonthClick;
-      // return (
-      //        <DayPickerNavigation
-      //           onPrevMonthClick={this.onPrevMonthClick}
-      //           onNextMonthClick={onNextMonthClick}
-      //           navPrev={navPrev}
-      //           navNext={navNext}
-      //           orientation={orientation}
-      //           phrases={phrases}
-      //           isRTL={isRTL}
-      //         />
-      //       );
+    // const onNextMonthClick = orientation === VERTICAL_SCROLLABLE
+    //   ? this.multiplyScrollableMonths
+    //   : this.onNextMonthClick;
+    // return (
+    //        <DayPickerNavigation
+    //           onPrevMonthClick={this.onPrevMonthClick}
+    //           onNextMonthClick={onNextMonthClick}
+    //           navPrev={navPrev}
+    //           navNext={navNext}
+    //           orientation={orientation}
+    //           phrases={phrases}
+    //           isRTL={isRTL}
+    //         />
+    //       );
     return null;
   }
 
@@ -1174,7 +1173,7 @@ export default withStyles(({
 
   DayPicker_focusRegion: {
     outline: 'none',
-    boxShadow: '0 2px 8px 0 rgba(22,22,22,0.32)'
+    boxShadow: '0 2px 8px 0 rgba(22,22,22,0.32)',
   },
 
   DayPicker_calendarInfo__horizontal: {
