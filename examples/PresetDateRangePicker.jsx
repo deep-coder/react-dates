@@ -10,7 +10,9 @@ import DateRangePicker from '../src/components/DateRangePicker';
 
 import { DateRangePickerPhrases } from '../src/defaultPhrases';
 import DateRangePickerShape from '../src/shapes/DateRangePickerShape';
-import { START_DATE, END_DATE, HORIZONTAL_ORIENTATION, ANCHOR_LEFT } from '../src/constants';
+import {
+ START_DATE, END_DATE, HORIZONTAL_ORIENTATION, ANCHOR_LEFT 
+} from '../src/constants';
 import isSameDay from '../src/utils/isSameDay';
 
 const propTypes = {
@@ -128,6 +130,7 @@ class DateRangePickerWrapper extends React.Component {
 
     return (
       <div {...css(styles.PresetDateRangePicker_panel)}>
+        <div {...css(styles.PresetDateRangePicker_header)}>Select Date</div>
         {presets.map(({ text, start, end }) => {
           const isSelected = isSameDay(start, startDate) && isSameDay(end, endDate);
           return (
@@ -166,6 +169,7 @@ class DateRangePickerWrapper extends React.Component {
       <div>
         <DateRangePicker
           {...props}
+          calendarInfoPosition="before"
           renderCalendarInfo={this.renderDatePresets}
           onDatesChange={this.onDatesChange}
           onFocusChange={this.onFocusChange}
@@ -183,17 +187,25 @@ DateRangePickerWrapper.defaultProps = defaultProps;
 
 export default withStyles(({ reactDates: { color } }) => ({
   PresetDateRangePicker_panel: {
-    padding: '0 22px 11px 22px',
+    padding: '0 11px 11px 0px',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  PresetDateRangePicker_header: {
+    padding: '10px',
   },
 
   PresetDateRangePicker_button: {
+    fontFamily: 'Proxima-Nova-Regular',
+    textAlign: 'left',
+    borderRight: 0,
+    borderBottom: 0,
+    borderTop: 0,
+    borderLeft: '2px solid transparent',
     position: 'relative',
     height: '100%',
-    textAlign: 'center',
     background: 'none',
-    border: `2px solid ${color.core.primary}`,
-    color: color.core.primary,
-    padding: '4px 12px',
+    padding: '4px 0px',
     marginRight: 8,
     font: 'inherit',
     fontWeight: 700,
@@ -201,14 +213,16 @@ export default withStyles(({ reactDates: { color } }) => ({
     overflow: 'visible',
     boxSizing: 'border-box',
     cursor: 'pointer',
-
+    outline: 'none',
+    marginBottom: '5px',
+    paddingLeft: '3px',
     ':active': {
       outline: 0,
     },
   },
 
   PresetDateRangePicker_button__selected: {
-    color: color.core.white,
-    background: color.core.primary,
+    borderLeft: '2px solid green',
+
   },
 }))(DateRangePickerWrapper);

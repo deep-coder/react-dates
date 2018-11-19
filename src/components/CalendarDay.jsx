@@ -52,6 +52,7 @@ class CalendarDay extends React.PureComponent {
     super(...args);
 
     this.setButtonRef = this.setButtonRef.bind(this);
+    this.renderDateComponent = this.renderDateComponent.bind();
   }
 
   componentDidUpdate(prevProps) {
@@ -93,6 +94,10 @@ class CalendarDay extends React.PureComponent {
     this.buttonRef = ref;
   }
 
+  renderDateComponent() {
+
+  }
+
   render() {
     const {
       day,
@@ -130,12 +135,7 @@ class CalendarDay extends React.PureComponent {
           modifiers.has('highlighted-calendar') && styles.CalendarDay__highlighted_calendar,
           modifiers.has('blocked-minimum-nights') && styles.CalendarDay__blocked_minimum_nights,
           modifiers.has('blocked-calendar') && styles.CalendarDay__blocked_calendar,
-          hoveredSpan && styles.CalendarDay__hovered_span,
-          modifiers.has('selected-span') && styles.CalendarDay__selected_span,
           modifiers.has('last-in-range') && styles.CalendarDay__last_in_range,
-          modifiers.has('selected-start') && styles.CalendarDay__selected_start,
-          modifiers.has('selected-end') && styles.CalendarDay__selected_end,
-          selected && styles.CalendarDay__selected,
           isOutsideRange && styles.CalendarDay__blocked_out_of_range,
           daySizeStyles,
         )}
@@ -150,16 +150,35 @@ class CalendarDay extends React.PureComponent {
         tabIndex={tabIndex}
       >
         <div {...css(
-          selected && styles.daySelected,
-          !selected && styles.daysHover,
-          !selected && modifiers.has('today') && styles.CalendarDay__today,
-          isOutsideRange && styles.CalendarDay__blocked_out_of_range,
+          styles.CalendarDay_Wrapper,
         )
 
-          }
+       }
         >
-          {' '}
-          {renderDayContents ? renderDayContents(day, modifiers) : day.format('D')}
+          {modifiers.has('selected-start') && styles.CalendarDay__selected_start && (
+          <div {...css(styles.CalendarDay__selected_start_div)} />
+          )}
+          {modifiers.has('selected-end') && styles.CalendarDay__selected_end && (
+            <div {...css(styles.CalendarDay__selected_end_div)} />
+          )}
+          <div {...css(
+            selected && styles.daySelected,
+            selected && styles.CalendarDay__selected,
+            modifiers.has('selected-start') && styles.CalendarDay__selected_start,
+            modifiers.has('selected-end') && styles.CalendarDay__selected_end,
+            !selected && styles.daysHover,
+            !selected && modifiers.has('today') && styles.CalendarDay__today,
+            isOutsideRange && styles.CalendarDay__blocked_out_of_range,
+            modifiers.has('selected-span') && styles.CalendarDay__selected_span,
+            hoveredSpan && styles.CalendarDay__hovered_span,
+          )
+
+          }
+          >
+
+            {' '}
+            {renderDayContents ? renderDayContents(day, modifiers) : day.format('D')}
+          </div>
         </div>
       </td>
     );
@@ -171,6 +190,10 @@ CalendarDay.defaultProps = defaultProps;
 
 export { CalendarDay as PureCalendarDay };
 export default withStyles(({ reactDates: { color, font, typography } }) => ({
+  CalendarDay_Wrapper: {
+    position: 'relative',
+    zIndex: '1',
+  },
   daySelected: {
     background: color.selected.backgroundColor,
     color: color.selected.color,
@@ -199,6 +222,8 @@ export default withStyles(({ reactDates: { color, font, typography } }) => ({
     cursor: 'pointer',
     fontSize: font.size,
     textAlign: 'center',
+    outline: 'none',
+    padding: 0,
     ':active': {
       outline: 0,
     },
@@ -263,21 +288,20 @@ export default withStyles(({ reactDates: { color, font, typography } }) => ({
   },
 
   CalendarDay__selected_span: {
-    background: color.selectedSpan.backgroundColor,
-    border: `1px double ${color.selectedSpan.borderColor}`,
-    color: color.selectedSpan.color,
-
+    background: color.secondary_hover,
+    border: `0px double ${color.selectedSpan.borderColor}`,
+    borderRadius: '0px',
+    width: '100%',
     ':hover': {
-      background: color.selectedSpan.backgroundColor_hover,
-      border: `1px double ${color.selectedSpan.borderColor}`,
-      color: color.selectedSpan.color_active,
+      background: color.secondary_hover,
+      border: `0px double ${color.selectedSpan.borderColor}`,
     },
 
-    ':active': {
-      background: color.selectedSpan.backgroundColor_active,
-      border: `1px double ${color.selectedSpan.borderColor}`,
-      color: color.selectedSpan.color_active,
-    },
+    // ':active': {
+    //   background: color.selectedSpan.backgroundColor_active,
+    //   border: `0px double ${color.selectedSpan.borderColor}`,
+    //   color: color.selectedSpan.color_active,
+    // },
   },
 
   CalendarDay__last_in_range: {
@@ -288,40 +312,41 @@ export default withStyles(({ reactDates: { color, font, typography } }) => ({
     },
   },
 
-  CalendarDay__selected: {
-    border: `0px double ${color.selected.borderColor}`,
-    borderRadius: '20px',
-    color: color.selected.color,
+  // CalendarDay__selected: {
+  //   border: `0px double ${color.selected.borderColor}`,
+  //   borderRadius: '20px',
+  //   color: color.selected.color,
 
-    ':hover': {
-      background: 'none',
-      border: `0px double ${color.selected.borderColor}`,
-      color: color.selected.color_active,
-    },
+  //   ':hover': {
+  //     background: 'none',
+  //     border: `0px double ${color.selected.borderColor}`,
+  //     color: color.selected.color_active,
+  //   },
 
-    ':active': {
-      background: color.selected.backgroundColor_active,
-      border: `1px double ${color.selected.borderColor}`,
-      color: color.selected.color_active,
-    },
-  },
+  //   ':active': {
+  //     background: color.selected.backgroundColor_active,
+  //     border: `1px double ${color.selected.borderColor}`,
+  //     color: color.selected.color_active,
+  //   },
+  // },
 
   CalendarDay__hovered_span: {
-    background: color.hoveredSpan.backgroundColor,
-    border: `1px double ${color.hoveredSpan.borderColor}`,
-    color: color.hoveredSpan.color,
+    background: color.secondary_hover,
+    border: `0px double ${color.hoveredSpan.borderColor}`,
+    borderRadius: '0px',
+    width: '100%',
 
-    ':hover': {
-      background: color.hoveredSpan.backgroundColor_hover,
-      border: `1px double ${color.hoveredSpan.borderColor}`,
-      color: color.hoveredSpan.color_active,
-    },
+    // ':hover': {
+    //   background: color.hoveredSpan.backgroundColor_hover,
+    //   border: `0px double ${color.hoveredSpan.borderColor}`,
+    //   color: color.hoveredSpan.color_active,
+    // },
 
-    ':active': {
-      background: color.hoveredSpan.backgroundColor_active,
-      border: `1px double ${color.hoveredSpan.borderColor}`,
-      color: color.hoveredSpan.color_active,
-    },
+    // ':active': {
+    //   background: color.hoveredSpan.backgroundColor_active,
+    //   border: `1px double ${color.hoveredSpan.borderColor}`,
+    //   color: color.hoveredSpan.color_active,
+    // },
   },
 
   CalendarDay__blocked_calendar: {
@@ -359,9 +384,35 @@ export default withStyles(({ reactDates: { color, font, typography } }) => ({
       color: color.blocked_out_of_range.color_active,
     },
   },
-
-  CalendarDay__selected_start: {},
-  CalendarDay__selected_end: {},
+  CalendarDay__selected_start_div: {
+    position: 'absolute',
+    width: '26px',
+    height: '24px',
+    backgroundColor: color.secondary_hover,
+    top: '-12px',
+    zIndex: '2',
+    left: '24px',
+  },
+  CalendarDay__selected_start: {
+    position: 'absolute',
+    zIndex: '3',
+    left: '12px',
+    top: '-13px',
+  },
+  CalendarDay__selected_end_div: {
+    position: 'absolute',
+    width: '26px',
+    height: '24px',
+    backgroundColor: color.secondary_hover,
+    top: '-12px',
+    zIndex: '2',
+  },
+  CalendarDay__selected_end: {
+    position: 'absolute',
+    zIndex: '3',
+    left: '12px',
+    top: '-13px',
+  },
   CalendarDay__today: {
     width: '24px',
     height: '24px',

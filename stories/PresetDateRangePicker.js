@@ -19,14 +19,19 @@ const presetDateRangePickerControllerInfo = `The ${monospace('PresetDateRangePic
 const today = moment();
 const tomorrow = moment().add(1, 'day');
 const presets = [{
-  text: 'Today',
+  text: 'Last Week',
   start: today,
-  end: today,
+  end: moment().add(-1, 'week'),
 },
 {
-  text: 'Tomorrow',
+  text: 'Last 15 Days',
   start: tomorrow,
-  end: tomorrow,
+  end: moment().add(-15, 'days'),
+},
+{
+  text: 'Last 30 Days',
+  start: today,
+  end: moment().add(-1, 'month'),
 },
 {
   text: 'Next Week',
@@ -34,10 +39,16 @@ const presets = [{
   end: moment().add(1, 'week'),
 },
 {
-  text: 'Next Month',
+  text: 'Next 15 Days',
+  start: tomorrow,
+  end: moment().add(15, 'days'),
+},
+{
+  text: 'Next 30 Days',
   start: today,
   end: moment().add(1, 'month'),
-}];
+},
+];
 
 storiesOf('PresetDateRangePicker', module)
   .addDecorator(InfoPanelDecorator(presetDateRangePickerControllerInfo))
