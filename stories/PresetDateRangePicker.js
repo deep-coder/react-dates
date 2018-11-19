@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import moment from 'moment';
 
-import PresetDateRangePicker from '../examples/PresetDateRangePicker';
+import PresetDateRangePicker from '../src/components/TRangeDatePicker';
 
 import InfoPanelDecorator, { monospace } from './InfoPanelDecorator';
 

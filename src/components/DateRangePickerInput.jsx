@@ -195,11 +195,12 @@ function DateRangePickerInput({
   return (
     <div
       {...css(
-        styles.DateRangePickerInput,
+        styles.DateRangePickerInput,    
         disabled && styles.DateRangePickerInput__disabled,
         isRTL && styles.DateRangePickerInput__rtl,
-        !noBorder && styles.DateRangePickerInput__withBorder,
+        styles.DateRangePickerInput__withBorder,
         block && styles.DateRangePickerInput__block,
+        isFocused && styles.DateRangePickerInput__InputFocused,
         showClearDates && styles.DateRangePickerInput__showClearDates,
       )}
     >
@@ -290,13 +291,15 @@ export default withStyles(({ reactDates: { border, color, sizing } }) => ({
     backgroundColor: color.background,
     display: 'inline-block',
   },
-
+  DateRangePickerInput__InputFocused: {
+    border: `1px solid ${color.primary}`,
+  },
   DateRangePickerInput__disabled: {
     background: color.disabled,
   },
 
   DateRangePickerInput__withBorder: {
-    borderColor: color.border,
+    borderColor: border.pickerInput.borderColor,
     borderWidth: border.pickerInput.borderWidth,
     borderStyle: border.pickerInput.borderStyle,
     borderRadius: border.pickerInput.borderRadius,

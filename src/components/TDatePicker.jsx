@@ -9,6 +9,7 @@ import SingleDatePicker from './SingleDatePicker';
 import MonthSelector from './MonthSelector';
 import YearSelector from './YearSelector';
 import Button from './Button';
+import CalendarIcon from './CalendarIcon';
 
 import { SingleDatePickerPhrases } from '../defaultPhrases';
 import SingleDatePickerShape from '../shapes/SingleDatePickerShape';
@@ -203,6 +204,8 @@ class TDatePicker extends React.Component {
             <Button onClick={this.onTodayCliked(month, onMonthSelect)} label="Today" />
           </div>
         )}
+        customInputIcon={<CalendarIcon />}
+        inputIconPosition="after"
         readOnly
         numberOfMonths={1}
         id="date_input"
