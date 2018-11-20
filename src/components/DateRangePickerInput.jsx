@@ -200,7 +200,7 @@ function DateRangePickerInput({
         isRTL && styles.DateRangePickerInput__rtl,
         styles.DateRangePickerInput__withBorder,
         block && styles.DateRangePickerInput__block,
-        isFocused && styles.DateRangePickerInput__InputFocused,
+        (isEndDateFocused || isStartDateFocused) && styles.DateRangePickerInput__InputFocused,
         showClearDates && styles.DateRangePickerInput__showClearDates,
       )}
     >

@@ -53,5 +53,16 @@ const presets = [{
 storiesOf('PresetDateRangePicker', module)
   .addDecorator(InfoPanelDecorator(presetDateRangePickerControllerInfo))
   .add('default', withInfo()(() => (
-    <PresetDateRangePicker/>
+    <PresetDateRangePicker
+      RangePresets={[{
+        text: 'Last 2 months',
+        value: '-60',
+        dateType: 'days',
+      },
+      {
+        text: 'Next 2 months',
+        value: '60',
+        dateType: 'days',
+      }]}
+    />
   )));

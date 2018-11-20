@@ -64,6 +64,7 @@ const defaultProps = {
   autoFocusEndDate: false,
   initialStartDate: null,
   initialEndDate: null,
+  RangePresets: [],
   presets: [{
     text: 'Last Week',
     start: moment().add(-1, 'week'),
@@ -86,7 +87,7 @@ const defaultProps = {
   },
   {
     text: 'Next 15 Days',
-    start: tomorrow,
+    start: today,
     end: moment().add(15, 'days'),
   },
   {
@@ -147,18 +148,23 @@ const defaultProps = {
 class DateRangePickerWrapper extends React.Component {
   constructor(props) {
     super(props);
-
     let focusedInput = null;
     if (props.autoFocus) {
       focusedInput = START_DATE;
     } else if (props.autoFocusEndDate) {
       focusedInput = END_DATE;
     }
+    const tempPreset = props.RangePresets.map(preset => ({
+      text: preset.text,
+      start: preset.value < 0 ? moment().add(preset.value, preset.dateType) : today,
+      end: preset.value < 0 ? today : moment().add(preset.value, preset.dateType),
+    }));
 
     this.state = {
       focusedInput,
       startDate: props.initialStartDate,
       endDate: props.initialEndDate,
+      presets: [...props.presets, ...tempPreset],
     };
 
     this.onDatesChange = this.onDatesChange.bind(this);
@@ -168,6 +174,7 @@ class DateRangePickerWrapper extends React.Component {
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
     this.onTodayCliked = this.onTodayCliked.bind(this);
   }
+
 
   onDatesChange({ startDate, endDate }) {
     this.setState({ startDate, endDate });
@@ -185,18 +192,24 @@ class DateRangePickerWrapper extends React.Component {
     return () => onMonthSelect(month, month.month() + 1);
   }
 
-  onTodayCliked(month, onMonthSelect) {
-    return () => {
+  onTodayCliked(month, onMonthSelect, onYearSelect) {
+    return () => { 
       this.setState({ date: moment() }, () => {
-        onMonthSelect(month, moment.months().indexOf(moment().format('MMMM')));
+        //onYearSelect(moment(), moment().format("YYYY"))
+        console.log("Moment---->",moment());
+        console.log("Month--->",month);
+        //onMonthSelect(month, moment.months().indexOf(moment().format('MMMM')));
+        onYearSelect(moment(), moment().format("YYYY"));
+        console.log("after Month--->",month);
+        
       });
     };
   }
 
-  renderDatePresets() {
-    const { presets, styles } = this.props;
-    const { startDate, endDate } = this.state;
 
+  renderDatePresets() {
+    const { styles } = this.props;
+    const { startDate, endDate, presets } = this.state;
     return (
       <div {...css(styles.PresetDateRangePicker_panel)}>
         <div {...css(styles.PresetDateRangePicker_header)}>Select Date</div>
@@ -251,7 +264,7 @@ class DateRangePickerWrapper extends React.Component {
                 minYear={props.minYear}
                 maxYear={props.maxYear}
               />
-              <Button onClick={this.onTodayCliked(month, onMonthSelect)} label="Today" />
+              <Button onClick={this.onTodayCliked(month, onMonthSelect, onYearSelect)} label="Today" />
             </div>
           )}
           {...props}

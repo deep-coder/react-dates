@@ -217,16 +217,18 @@ class CalendarMonthGrid extends React.PureComponent {
     onMonthChange(newMonth);
   }
 
+  // Todo need to check this function
   onYearSelect(currentMonth, newYearVal) {
     const newMonth = currentMonth.clone();
-    const { onYearChange, orientation } = this.props;
-    const { months } = this.state;
-    const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
-    let initialMonthSubtraction = months.indexOf(currentMonth);
-    if (!withoutTransitionMonths) {
-      initialMonthSubtraction -= 1;
-    }
-    newMonth.set('year', newYearVal).subtract(initialMonthSubtraction, 'months');
+    const { onYearChange /* orientation */ } = this.props;
+    // const { months } = this.state;
+    // const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
+    // let initialMonthSubtraction = months.indexOf(currentMonth);
+    // if (!withoutTransitionMonths) {
+    //   initialMonthSubtraction -= 1;
+    // }
+    // newMonth.set('year', newYearVal).subtract(initialMonthSubtraction, 'months');
+    newMonth.set('year', newYearVal);
     onYearChange(newMonth);
   }
 

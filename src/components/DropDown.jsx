@@ -73,6 +73,7 @@ export default withStyles(({
     userSelect: 'none',
     width: '88px',
     cursor: 'pointer',
+    outline: 'none',
     ...typography.heading4,
   },
   DropDownHeader: {
@@ -85,6 +86,7 @@ export default withStyles(({
     cursor: 'default',
     position: 'relative',
     backgroundColor: '#fff',
+    outline:'none',
     span: {
       marginRight: '20px',
     },

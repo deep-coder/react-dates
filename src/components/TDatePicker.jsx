@@ -166,10 +166,10 @@ class TDatePicker extends React.Component {
     return () => onMonthSelect(month, month.month() + 1);
   }
 
-  onTodayCliked(month, onMonthSelect) {
+  onTodayCliked(month, onMonthSelect,onYearSelect) {
     return () => {
       this.setState({ date: moment() }, () => {
-        onMonthSelect(month, moment.months().indexOf(moment().format('MMMM')));
+        onYearSelect(moment(), moment().format("YYYY"));
       });
     };
   }
@@ -201,7 +201,7 @@ class TDatePicker extends React.Component {
               minYear={props.minYear}
               maxYear={props.maxYear}
             />
-            <Button onClick={this.onTodayCliked(month, onMonthSelect)} label="Today" />
+            <Button onClick={this.onTodayCliked(month, onMonthSelect,onYearSelect)} label="Today" />
           </div>
         )}
         customInputIcon={<CalendarIcon />}
