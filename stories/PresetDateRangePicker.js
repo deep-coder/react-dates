@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import moment from 'moment';
 
-import PresetDateRangePicker from '../src/components/TRangeDatePicker';
+import PresetDateRangePicker from '../src/components/TDatePickerRange';
 
 import InfoPanelDecorator, { monospace } from './InfoPanelDecorator';
 
@@ -20,18 +20,18 @@ const today = moment();
 const tomorrow = moment().add(1, 'day');
 const presets = [{
   text: 'Last Week',
-  start: today,
-  end: moment().add(-1, 'week'),
+  start: moment().add(-1, 'week'),
+  end: today,
 },
 {
   text: 'Last 15 Days',
-  start: tomorrow,
-  end: moment().add(-15, 'days'),
+  start: moment().add(-15, 'days'),
+  end: today,
 },
 {
   text: 'Last 30 Days',
-  start: today,
-  end: moment().add(-1, 'month'),
+  start: moment().add(-1, 'month'),
+  end: today,
 },
 {
   text: 'Next Week',
@@ -55,6 +55,5 @@ storiesOf('PresetDateRangePicker', module)
   .add('default', withInfo()(() => (
     <PresetDateRangePicker
       presets={presets}
-      autoFocus
     />
   )));

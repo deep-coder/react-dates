@@ -33,7 +33,7 @@ const propTypes = forbidExtraProps({
 const defaultProps = {
   day: moment(),
   daySize: DAY_SIZE,
-  isOutsideDay: false,
+  isOutsideDay: true,
   modifiers: new Set(),
   isFocused: false,
   tabIndex: -1,
@@ -165,12 +165,13 @@ class CalendarDay extends React.PureComponent {
             selected && styles.daySelected,
             selected && styles.CalendarDay__selected,
             modifiers.has('selected-start') && styles.CalendarDay__selected_start,
-            modifiers.has('selected-end') && styles.CalendarDay__selected_end,
+           
             !selected && styles.daysHover,
             !selected && modifiers.has('today') && styles.CalendarDay__today,
             isOutsideRange && styles.CalendarDay__blocked_out_of_range,
             modifiers.has('selected-span') && styles.CalendarDay__selected_span,
             hoveredSpan && styles.CalendarDay__hovered_span,
+            modifiers.has('selected-end') && styles.CalendarDay__selected_end,
           )
 
           }
