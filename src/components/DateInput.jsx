@@ -240,7 +240,7 @@ class DateInput extends React.PureComponent {
             {...css(
               styles.DateInput_fang,
               openDirection === OPEN_DOWN && {
-                top: '32px',
+                top: '38px',
               },
               openDirection === OPEN_UP && {
                 bottom: inputHeight + verticalSpacing - FANG_HEIGHT_PX - 1,

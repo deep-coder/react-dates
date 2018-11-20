@@ -195,7 +195,7 @@ function DateRangePickerInput({
   return (
     <div
       {...css(
-        styles.DateRangePickerInput,    
+        styles.DateRangePickerInput,
         disabled && styles.DateRangePickerInput__disabled,
         isRTL && styles.DateRangePickerInput__rtl,
         styles.DateRangePickerInput__withBorder,
@@ -290,6 +290,9 @@ export default withStyles(({ reactDates: { border, color, sizing } }) => ({
   DateRangePickerInput: {
     backgroundColor: color.background,
     display: 'inline-block',
+    ':hover': {
+      border: `1px solid ${color.primary}`,
+    },
   },
   DateRangePickerInput__InputFocused: {
     border: `1px solid ${color.primary}`,

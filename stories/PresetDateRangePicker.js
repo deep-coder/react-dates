@@ -53,7 +53,5 @@ const presets = [{
 storiesOf('PresetDateRangePicker', module)
   .addDecorator(InfoPanelDecorator(presetDateRangePickerControllerInfo))
   .add('default', withInfo()(() => (
-    <PresetDateRangePicker
-      presets={presets}
-    />
+    <PresetDateRangePicker/>
   )));

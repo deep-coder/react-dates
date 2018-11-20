@@ -19,7 +19,18 @@ import {
   START_DATE, END_DATE, HORIZONTAL_ORIENTATION, ANCHOR_LEFT,
 } from '../constants';
 import isSameDay from '../utils/isSameDay';
-
+// const TestCustomCloseIcon = () => (
+//   <span
+//     style={{
+//       border: '1px solid #dce0e0',
+//       backgroundColor: '#fff',
+//       color: '#484848',
+//       padding: '3px',
+//     }}
+//   >'X'</span>
+// );
+const today = moment();
+const tomorrow = moment().add(1, 'day');
 const propTypes = {
   ...withStylesPropTypes,
 
@@ -53,7 +64,37 @@ const defaultProps = {
   autoFocusEndDate: false,
   initialStartDate: null,
   initialEndDate: null,
-  presets: [],
+  presets: [{
+    text: 'Last Week',
+    start: moment().add(-1, 'week'),
+    end: today,
+  },
+  {
+    text: 'Last 15 Days',
+    start: moment().add(-15, 'days'),
+    end: today,
+  },
+  {
+    text: 'Last 30 Days',
+    start: moment().add(-1, 'month'),
+    end: today,
+  },
+  {
+    text: 'Next Week',
+    start: today,
+    end: moment().add(1, 'week'),
+  },
+  {
+    text: 'Next 15 Days',
+    start: tomorrow,
+    end: moment().add(15, 'days'),
+  },
+  {
+    text: 'Next 30 Days',
+    start: today,
+    end: moment().add(1, 'month'),
+  },
+  ],
 
   // input related props
   startDateId: START_DATE,
@@ -227,6 +268,8 @@ class DateRangePickerWrapper extends React.Component {
           weekDayFormat="ddd"
           displayFormat="ddd MMM DD,YYYY"
           hideKeyboardShortcutsPanel
+          // showClearDate
+          // customCloseIcon={<TestCustomCloseIcon />}
         />
       </div>
     );
@@ -238,9 +281,10 @@ DateRangePickerWrapper.defaultProps = defaultProps;
 
 export default withStyles(({ reactDates: { color } }) => ({
   PresetDateRangePicker_panel: {
-    padding: '0 11px 11px 0px',
+    padding: '0 11px 143px 0px',
     display: 'flex',
     flexDirection: 'column',
+    backgroundColor: '#EDEEF0',
   },
   monthElementStyle: {
     display: 'flex',
