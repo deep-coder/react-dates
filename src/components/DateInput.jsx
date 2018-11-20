@@ -185,6 +185,7 @@ class DateInput extends React.PureComponent {
       regular,
       block,
       styles,
+      isDRPInput,
       theme: { reactDates },
     } = this.props;
 
@@ -215,6 +216,7 @@ class DateInput extends React.PureComponent {
             readOnly && styles.DateInput_input__readOnly,
             focused && styles.DateInput_input__focused,
             disabled && styles.DateInput_input__disabled,
+            focused && isDRPInput && styles.DateInput_drp_input__focused,
           )}
           aria-label={placeholder}
           type="text"
@@ -345,6 +347,10 @@ export default withStyles(({
     borderRight: border.input.borderRightFocused,
     borderBottom: border.input.borderRightFocused,
     borderLeft: border.input.borderLeftFocused,
+  },
+  DateInput_drp_input__focused: {
+    backgroundColor: color.secondary_hover,
+    borderRadius: '2px',
   },
 
   DateInput_input__disabled: {

@@ -226,6 +226,7 @@ function DateRangePickerInput({
         verticalSpacing={verticalSpacing}
         small={small}
         regular={regular}
+        isDRPInput
       />
 
       {
@@ -258,6 +259,7 @@ function DateRangePickerInput({
         verticalSpacing={verticalSpacing}
         small={small}
         regular={regular}
+        isDRPInput
       />
 
       {showClearDates && (
@@ -290,6 +292,8 @@ export default withStyles(({ reactDates: { border, color, sizing } }) => ({
   DateRangePickerInput: {
     backgroundColor: color.background,
     display: 'inline-block',
+    cursor: 'pointer',
+    padding: '5px',
     ':hover': {
       border: `1px solid ${color.primary}`,
     },
@@ -393,7 +397,7 @@ export default withStyles(({ reactDates: { border, color, sizing } }) => ({
     cursor: 'pointer',
     display: 'inline-block',
     verticalAlign: 'middle',
-    padding: 10,
+    padding: 5,
     margin: '0 5px 0 10px',
   },
 

@@ -405,7 +405,7 @@ class SingleDatePicker extends React.PureComponent {
           openDirection === OPEN_DOWN && styles.SingleDatePicker_picker__openDown,
           openDirection === OPEN_UP && styles.SingleDatePicker_picker__openUp,
           !withAnyPortal && openDirection === OPEN_DOWN && {
-            top: '46px',
+            top: '52px',
           },
           !withAnyPortal && openDirection === OPEN_UP && {
             bottom: inputHeight + verticalSpacing,
