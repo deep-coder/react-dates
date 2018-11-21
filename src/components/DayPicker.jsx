@@ -8,6 +8,8 @@ import throttle from 'lodash/throttle';
 import isTouchDevice from 'is-touch-device';
 import OutsideClickHandler from 'react-outside-click-handler';
 
+import Button from './Button';
+
 import { DayPickerPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 
@@ -83,6 +85,7 @@ const propTypes = forbidExtraProps({
   // month props
   renderMonthText: mutuallyExclusiveProps(PropTypes.func, 'renderMonthText', 'renderMonthElement'),
   renderMonthElement: mutuallyExclusiveProps(PropTypes.func, 'renderMonthText', 'renderMonthElement'),
+  renderFormButtons: PropTypes.func,
 
   // day props
   modifiers: PropTypes.objectOf(PropTypes.objectOf(ModifiersShape)),
@@ -141,6 +144,7 @@ export const defaultProps = {
   // month props
   renderMonthText: null,
   renderMonthElement: null,
+  renderFormButtons: null,
 
   // day props
   modifiers: {},
@@ -918,6 +922,7 @@ class DayPicker extends React.PureComponent {
       renderDayContents,
       renderCalendarInfo,
       renderMonthElement,
+      renderFormButtons,
       calendarInfoPosition,
       hideKeyboardShortcutsPanel,
       onOutsideClick,
@@ -1100,7 +1105,16 @@ class DayPicker extends React.PureComponent {
                 />
                 {verticalScrollable && this.renderNavigation()}
               </div>
-
+              {renderFormButtons && (
+              <div {...css(
+                styles.DayPicker_FormButtons,
+              )}
+              >
+                <Button label="Cancel" />
+                <Button label="Apply" />
+              </div>
+              )
+            }
               {!isTouch && !hideKeyboardShortcutsPanel && (
                 <DayPickerKeyboardShortcuts
                   block={this.isVertical() && !withPortal}
@@ -1263,5 +1277,10 @@ export default withStyles(({
         display: 'none',
       },
     }),
+  },
+  DayPicker_FormButtons: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 }), { pureComponent: typeof React.PureComponent !== 'undefined' })(DayPicker);

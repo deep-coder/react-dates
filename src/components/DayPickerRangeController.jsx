@@ -61,6 +61,7 @@ const propTypes = forbidExtraProps({
   // DayPicker props
   renderMonthText: mutuallyExclusiveProps(PropTypes.func, 'renderMonthText', 'renderMonthElement'),
   renderMonthElement: mutuallyExclusiveProps(PropTypes.func, 'renderMonthText', 'renderMonthElement'),
+  renderFormButtons: PropTypes.func,
   enableOutsideDays: PropTypes.bool,
   numberOfMonths: PropTypes.number,
   orientation: ScrollableOrientationShape,
@@ -143,6 +144,7 @@ const defaultProps = {
   renderDayContents: null,
   renderCalendarInfo: null,
   renderMonthElement: null,
+  renderFormButtons: null,
   calendarInfoPosition: INFO_POSITION_BOTTOM,
   firstDayOfWeek: null,
   verticalHeight: null,
@@ -1065,6 +1067,7 @@ export default class DayPickerRangeController extends React.PureComponent {
       renderDayContents,
       renderCalendarInfo,
       renderMonthElement,
+      renderFormButtons,
       calendarInfoPosition,
       onBlur,
       onShiftTab,
@@ -1113,6 +1116,7 @@ export default class DayPickerRangeController extends React.PureComponent {
         renderDayContents={renderDayContents}
         renderCalendarInfo={renderCalendarInfo}
         renderMonthElement={renderMonthElement}
+        renderFormButtons={renderFormButtons}
         calendarInfoPosition={calendarInfoPosition}
         firstDayOfWeek={firstDayOfWeek}
         hideKeyboardShortcutsPanel={hideKeyboardShortcutsPanel}

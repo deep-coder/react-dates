@@ -291,6 +291,7 @@ class DateRangePickerWrapper extends React.Component {
           weekDayFormat="ddd"
           displayFormat="ddd MMM DD,YYYY"
           hideKeyboardShortcutsPanel
+          renderFormButtons={() => console.log('Render Form Button')}
           // showClearDate
           // customCloseIcon={<TestCustomCloseIcon />}
         />

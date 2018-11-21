@@ -104,6 +104,7 @@ const defaultProps = {
   renderCalendarDay: undefined,
   renderDayContents: null,
   renderMonthElement: null,
+  renderFormButtons: null,
   minimumNights: 1,
   enableOutsideDays: false,
   isDayBlocked: () => false,
@@ -370,6 +371,7 @@ class DateRangePicker extends React.PureComponent {
       renderDayContents,
       renderCalendarInfo,
       renderMonthElement,
+      renderFormButtons,
       calendarInfoPosition,
       firstDayOfWeek,
       initialVisibleMonth,
@@ -457,6 +459,7 @@ class DateRangePicker extends React.PureComponent {
           renderDayContents={renderDayContents}
           renderCalendarInfo={renderCalendarInfo}
           renderMonthElement={renderMonthElement}
+          renderFormButtons={renderFormButtons}
           calendarInfoPosition={calendarInfoPosition}
           isFocused={isDayPickerFocused}
           showKeyboardShortcuts={showKeyboardShortcuts}
