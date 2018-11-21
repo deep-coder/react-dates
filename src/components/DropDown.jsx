@@ -86,7 +86,7 @@ export default withStyles(({
     cursor: 'default',
     position: 'relative',
     backgroundColor: '#fff',
-    outline:'none',
+    outline: 'none',
     span: {
       marginRight: '20px',
     },

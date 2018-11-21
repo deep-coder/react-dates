@@ -71,7 +71,7 @@ const defaultProps = {
   firstVisibleMonthIndex: 0,
   horizontalMonthPadding: 13,
   initialMonth: moment(),
-  isAnimating: false,
+  isAnimating: true,
   numberOfMonths: 1,
   modifiers: {},
   orientation: HORIZONTAL_ORIENTATION,
@@ -92,7 +92,7 @@ const defaultProps = {
   firstDayOfWeek: null,
   setMonthTitleHeight: null,
   isRTL: false,
-  transitionDuration: 200,
+  transitionDuration: 10000,
   verticalBorderSpacing: undefined,
 
   // i18n

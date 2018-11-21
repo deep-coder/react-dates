@@ -154,7 +154,7 @@ function DateRangePickerInput({
   isFocused,
   phrases,
   isRTL,
-  noBorder,
+  // noBorder,
   block,
   verticalSpacing,
   small,

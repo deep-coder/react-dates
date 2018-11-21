@@ -52,7 +52,6 @@ class CalendarDay extends React.PureComponent {
     super(...args);
 
     this.setButtonRef = this.setButtonRef.bind(this);
-    this.renderDateComponent = this.renderDateComponent.bind();
   }
 
   componentDidUpdate(prevProps) {
@@ -92,10 +91,6 @@ class CalendarDay extends React.PureComponent {
 
   setButtonRef(ref) {
     this.buttonRef = ref;
-  }
-
-  renderDateComponent() {
-
   }
 
   render() {
@@ -165,7 +160,7 @@ class CalendarDay extends React.PureComponent {
             selected && styles.daySelected,
             selected && styles.CalendarDay__selected,
             modifiers.has('selected-start') && styles.CalendarDay__selected_start,
-           
+
             !selected && styles.daysHover,
             !selected && modifiers.has('today') && styles.CalendarDay__today,
             isOutsideRange && styles.CalendarDay__blocked_out_of_range,

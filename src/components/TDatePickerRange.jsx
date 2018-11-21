@@ -8,10 +8,8 @@ import { withStyles, withStylesPropTypes, css } from 'react-with-styles';
 
 import DateRangePicker from './DateRangePicker';
 
-import MonthSelector from './MonthSelector';
-import YearSelector from './YearSelector';
-import Button from './Button';
 import CalendarIcon from './CalendarIcon';
+import MonthElement from './MonthElement';
 
 import { DateRangePickerPhrases } from '../defaultPhrases';
 import DateRangePickerShape from '../shapes/DateRangePickerShape';
@@ -30,7 +28,6 @@ import isSameDay from '../utils/isSameDay';
 //   >'X'</span>
 // );
 const today = moment();
-const tomorrow = moment().add(1, 'day');
 const propTypes = {
   ...withStylesPropTypes,
 
@@ -41,12 +38,59 @@ const propTypes = {
   initialEndDate: momentPropTypes.momentObj,
   minYear: PropTypes.number,
   maxYear: PropTypes.number,
+  RangePresets: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string,
+    start: momentPropTypes.momentObj,
+    end: momentPropTypes.momentObj,
+  })),
   presets: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string,
     start: momentPropTypes.momentObj,
     end: momentPropTypes.momentObj,
   })),
+  // input related props
+  startDateId: PropTypes.string,
+  startDatePlaceholderText: PropTypes.string,
+  endDateId: PropTypes.string,
+  endDatePlaceholderText: PropTypes.string,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
+  screenReaderInputMessage: PropTypes.string,
+  showClearDates: PropTypes.bool,
+  showDefaultInputIcon: PropTypes.bool,
+  customInputIcon: PropTypes.node,
+  customArrowIcon: PropTypes.node,
+  customCloseIcon: PropTypes.node,
 
+  // calendar presentation and interaction related props
+  renderMonthText: PropTypes.node,
+  orientation: PropTypes.string,
+  anchorDirection: PropTypes.string,
+  horizontalMargin: 0,
+  withPortal: PropTypes.bool,
+  withFullScreenPortal: PropTypes.bool,
+  initialVisibleMonth: PropTypes.node,
+  numberOfMonths: PropTypes.number,
+  keepOpenOnDateSelect: PropTypes.bool,
+  reopenPickerOnClearDates: PropTypes.bool,
+  isRTL: PropTypes.bool,
+
+  // navigation related props
+  navPrev: PropTypes.node,
+  navNext: PropTypes.node,
+
+  // day presentation and interaction related props
+  renderDayContents: PropTypes.node,
+  minimumNights: PropTypes.number,
+  enableOutsideDays: PropTypes.bool,
+  isDayBlocked: PropTypes.func,
+  isOutsideRange: PropTypes.func,
+  isDayHighlighted: PropTypes.func,
+
+  // internationalization
+  displayFormat: () => moment.localeData().longDateFormat('L'),
+  monthFormat: PropTypes.string,
+  phrases: DateRangePickerPhrases,
   ...omit(DateRangePickerShape, [
     'startDate',
     'endDate',
@@ -127,16 +171,13 @@ const defaultProps = {
   // navigation related props
   navPrev: null,
   navNext: null,
-  onPrevMonthClick() {},
-  onNextMonthClick() {},
-  onClose() {},
 
   // day presentation and interaction related props
   renderDayContents: null,
   minimumNights: 0,
   enableOutsideDays: false,
   isDayBlocked: () => false,
-  isOutsideRange: day => false,
+  isOutsideRange: () => false,
   isDayHighlighted: () => false,
 
   // internationalization
@@ -170,9 +211,6 @@ class DateRangePickerWrapper extends React.Component {
     this.onDatesChange = this.onDatesChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
     this.renderDatePresets = this.renderDatePresets.bind(this);
-    this.onPrevMonthClick = this.onPrevMonthClick.bind(this);
-    this.onNextMonthClick = this.onNextMonthClick.bind(this);
-    this.onTodayCliked = this.onTodayCliked.bind(this);
   }
 
 
@@ -182,28 +220,6 @@ class DateRangePickerWrapper extends React.Component {
 
   onFocusChange(focusedInput) {
     this.setState({ focusedInput });
-  }
-
-  onPrevMonthClick(month, onMonthSelect) {
-    return () => onMonthSelect(month, month.month() - 1);
-  }
-
-  onNextMonthClick(month, onMonthSelect) {
-    return () => onMonthSelect(month, month.month() + 1);
-  }
-
-  onTodayCliked(month, onMonthSelect, onYearSelect) {
-    return () => { 
-      this.setState({ date: moment() }, () => {
-        //onYearSelect(moment(), moment().format("YYYY"))
-        console.log("Moment---->",moment());
-        console.log("Month--->",month);
-        //onMonthSelect(month, moment.months().indexOf(moment().format('MMMM')));
-        onYearSelect(moment(), moment().format("YYYY"));
-        console.log("after Month--->",month);
-        
-      });
-    };
   }
 
 
@@ -251,22 +267,13 @@ class DateRangePickerWrapper extends React.Component {
       <div>
         <DateRangePicker
           renderMonthElement={({ month, onMonthSelect, onYearSelect }) => (
-            <div {...css(props.styles.monthElementStyle)}>
-              <MonthSelector
-                onPrevMonthClick={this.onPrevMonthClick(month, onMonthSelect, onYearSelect)}
-                onNextMonthClick={this.onNextMonthClick(month, onMonthSelect, onYearSelect)}
-                monthLabel={moment.months(month.month())}
-              />
-
-              <YearSelector
-                month={month}
-                onYearSelect={onYearSelect}
-                minYear={props.minYear}
-                maxYear={props.maxYear}
-              />
-              <Button onClick={this.onTodayCliked(month, onMonthSelect, onYearSelect)} label="Today" />
-            </div>
-          )}
+            <MonthElement
+              month={month}
+              onMonthSelect={onMonthSelect}
+              onYearSelect={onYearSelect}
+              maxYear={props.maxYear}
+              minYear={props.minYear}
+            />)}
           {...props}
           customInputIcon={<CalendarIcon />}
           inputIconPosition="after"
@@ -292,7 +299,7 @@ class DateRangePickerWrapper extends React.Component {
 DateRangePickerWrapper.propTypes = propTypes;
 DateRangePickerWrapper.defaultProps = defaultProps;
 
-export default withStyles(({ reactDates: { color } }) => ({
+export default withStyles(() => ({
   PresetDateRangePicker_panel: {
     padding: '0 11px 143px 0px',
     display: 'flex',

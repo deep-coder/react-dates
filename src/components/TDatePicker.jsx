@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import momentPropTypes from 'react-moment-proptypes';
 import moment from 'moment';
 import omit from 'lodash/omit';
-import { withStyles, css } from 'react-with-styles';
+import { withStyles } from 'react-with-styles';
 
 import SingleDatePicker from './SingleDatePicker';
-import MonthSelector from './MonthSelector';
-import YearSelector from './YearSelector';
-import Button from './Button';
+import MonthElement from './MonthElement';
 import CalendarIcon from './CalendarIcon';
 
 import { SingleDatePickerPhrases } from '../defaultPhrases';
@@ -143,9 +141,6 @@ class TDatePicker extends React.Component {
 
     this.onDateChange = this.onDateChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
-    this.onPrevMonthClick = this.onPrevMonthClick.bind(this);
-    this.onNextMonthClick = this.onNextMonthClick.bind(this);
-    this.onTodayCliked = this.onTodayCliked.bind(this);
   }
 
   onDateChange(date) {
@@ -158,21 +153,6 @@ class TDatePicker extends React.Component {
     this.setState({ focused });
   }
 
-  onPrevMonthClick(month, onMonthSelect) {
-    return () => onMonthSelect(month, month.month() - 1);
-  }
-
-  onNextMonthClick(month, onMonthSelect) {
-    return () => onMonthSelect(month, month.month() + 1);
-  }
-
-  onTodayCliked(month, onMonthSelect,onYearSelect) {
-    return () => {
-      this.setState({ date: moment() }, () => {
-        onYearSelect(moment(), moment().format("YYYY"));
-      });
-    };
-  }
 
   render() {
     const { focused, date } = this.state;
@@ -188,22 +168,13 @@ class TDatePicker extends React.Component {
       <SingleDatePicker
         {...props}
         renderMonthElement={({ month, onMonthSelect, onYearSelect }) => (
-          <div {...css(props.styles.monthElementStyle)}>
-            <MonthSelector
-              onPrevMonthClick={this.onPrevMonthClick(month, onMonthSelect, onYearSelect)}
-              onNextMonthClick={this.onNextMonthClick(month, onMonthSelect, onYearSelect)}
-              monthLabel={moment.months(month.month())}
-            />
-
-            <YearSelector
-              month={month}
-              onYearSelect={onYearSelect}
-              minYear={props.minYear}
-              maxYear={props.maxYear}
-            />
-            <Button onClick={this.onTodayCliked(month, onMonthSelect,onYearSelect)} label="Today" />
-          </div>
-        )}
+          <MonthElement
+            month={month}
+            onMonthSelect={onMonthSelect}
+            onYearSelect={onYearSelect}
+            maxYear={props.maxYear}
+            minYear={props.minYear}
+          />)}
         customInputIcon={<CalendarIcon />}
         inputIconPosition="after"
         readOnly
