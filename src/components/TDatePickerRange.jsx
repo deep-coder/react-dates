@@ -30,8 +30,6 @@ import isSameDay from '../utils/isSameDay';
 const today = moment();
 const propTypes = {
   ...withStylesPropTypes,
-
-  // example props for the demo
   autoFocus: PropTypes.bool,
   autoFocusEndDate: PropTypes.bool,
   initialStartDate: momentPropTypes.momentObj,
@@ -98,6 +96,8 @@ const propTypes = {
     'focusedInput',
     'onFocusChange',
   ]),
+  onDatesChange: PropTypes.func.isRequired,
+  defaultPresets: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -108,6 +108,7 @@ const defaultProps = {
   autoFocusEndDate: false,
   initialStartDate: null,
   initialEndDate: null,
+  defaultPresets: false,
   RangePresets: [],
   presets: [{
     text: 'Last Week',
@@ -205,7 +206,7 @@ class DateRangePickerWrapper extends React.Component {
       focusedInput,
       startDate: props.initialStartDate,
       endDate: props.initialEndDate,
-      presets: [...props.presets, ...tempPreset],
+      presets: props.defaultPresets ? [...props.presets, ...tempPreset] : tempPreset,
     };
 
     this.onDatesChange = this.onDatesChange.bind(this);
@@ -215,7 +216,9 @@ class DateRangePickerWrapper extends React.Component {
 
 
   onDatesChange({ startDate, endDate }) {
-    this.setState({ startDate, endDate });
+    const { onDatesChange } = this.props;
+    this.setState({ startDate, endDate },
+      () => onDatesChange(startDate, endDate));
   }
 
   onFocusChange(focusedInput) {

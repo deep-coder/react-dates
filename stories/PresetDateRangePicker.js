@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import moment from 'moment';
 
-import PresetDateRangePicker from '../src/components/TDatePickerRange';
+import PresetDateRangePicker from '../examples/PresetDateRangePicker';
 
 import InfoPanelDecorator, { monospace } from './InfoPanelDecorator';
 
@@ -54,15 +54,6 @@ storiesOf('PresetDateRangePicker', module)
   .addDecorator(InfoPanelDecorator(presetDateRangePickerControllerInfo))
   .add('default', withInfo()(() => (
     <PresetDateRangePicker
-      RangePresets={[{
-        text: 'Last 2 months',
-        value: '-60',
-        dateType: 'days',
-      },
-      {
-        text: 'Next 2 months',
-        value: '60',
-        dateType: 'days',
-      }]}
+      
     />
   )));

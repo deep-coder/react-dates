@@ -49,6 +49,7 @@ const propTypes = forbidExtraProps({
 
   // accessibility
   isFocused: PropTypes.bool, // describes actual DOM focus
+  isDRPInput: PropTypes.bool,
 });
 
 const defaultProps = {

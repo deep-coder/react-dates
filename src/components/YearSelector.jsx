@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { forbidExtraProps } from 'airbnb-prop-types';
-import { withStylesPropTypes } from 'react-with-styles';
+import { withStylesPropTypes, withStyles } from 'react-with-styles';
+import momentPropTypes from 'react-moment-proptypes';
 import DropDown from './DropDown';
 
 const propTypes = forbidExtraProps({
   ...withStylesPropTypes,
-  minYear: PropTypes.number.isRequired,
-  maxYear: PropTypes.number.isRequired,
+  minYear: PropTypes.number,
+  maxYear: PropTypes.number,
+  month: momentPropTypes.momentObj,
+  onYearSelect: PropTypes.func,
 });
+
+const defaultProps = {
+  minYear: 2011,
+  maxYear: 2030,
+};
 
 class YearSelector extends Component {
   constructor(props) {
@@ -60,5 +69,9 @@ class YearSelector extends Component {
 }
 
 YearSelector.propTypes = propTypes;
+YearSelector.defaultProps = defaultProps;
 
-export default YearSelector;
+export default withStyles(() => ({
+
+
+}), { pureComponent: typeof React.PureComponent !== 'undefined' })(YearSelector);
