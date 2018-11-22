@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles, css } from 'react-with-styles';
 
 
-const Button = ({ styles, onClick, label }) => <button type="button" {...css(styles.primaryButton)} onClick={onClick}>{label}</button>;
+const Button = ({ styles, onClick, label }) => <button type="button" {...css(styles.primaryButton)} onClick={() => onClick()}>{label}</button>;
 
 
 export default withStyles(({ reactDates: { color, typography } }) => ({

@@ -1105,15 +1105,7 @@ class DayPicker extends React.PureComponent {
                 />
                 {verticalScrollable && this.renderNavigation()}
               </div>
-              {renderFormButtons && (
-              <div {...css(
-                styles.DayPicker_FormButtons,
-              )}
-              >
-                <Button label="Cancel" />
-                <Button label="Apply" />
-              </div>
-              )
+              {renderFormButtons && renderFormButtons()
             }
               {!isTouch && !hideKeyboardShortcutsPanel && (
                 <DayPickerKeyboardShortcuts
@@ -1277,10 +1269,5 @@ export default withStyles(({
         display: 'none',
       },
     }),
-  },
-  DayPicker_FormButtons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
   },
 }), { pureComponent: typeof React.PureComponent !== 'undefined' })(DayPicker);

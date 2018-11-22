@@ -10,6 +10,7 @@ export { default as DayPickerRangeController } from './components/DayPickerRange
 export { default as DayPickerSingleDateController } from './components/DayPickerSingleDateController';
 export { default as SingleDatePicker } from './components/SingleDatePicker';
 export { default as TDatePicker } from './components/TDatePicker';
+export { default as TDateRangePicker } from './components/TDatePickerRange';
 export { default as SingleDatePickerInput } from './components/SingleDatePickerInput';
 export { default as SingleDatePickerShape } from './shapes/SingleDatePickerShape';
 export { default as isInclusivelyAfterDay } from './utils/isInclusivelyAfterDay';

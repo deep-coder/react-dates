@@ -10,6 +10,7 @@ import DateRangePicker from './DateRangePicker';
 
 import CalendarIcon from './CalendarIcon';
 import MonthElement from './MonthElement';
+import FormButtons from './FormButtons';
 
 import { DateRangePickerPhrases } from '../defaultPhrases';
 import DateRangePickerShape from '../shapes/DateRangePickerShape';
@@ -212,17 +213,22 @@ class DateRangePickerWrapper extends React.Component {
     this.onDatesChange = this.onDatesChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
     this.renderDatePresets = this.renderDatePresets.bind(this);
+    this.onClickApply = this.onClickApply.bind(this);
   }
 
 
   onDatesChange({ startDate, endDate }) {
-    const { onDatesChange } = this.props;
-    this.setState({ startDate, endDate },
-      () => onDatesChange(startDate, endDate));
+    this.setState({ startDate, endDate });
   }
 
   onFocusChange(focusedInput) {
     this.setState({ focusedInput });
+  }
+
+  onClickApply() {
+    const { startDate, endDate } = this.state;
+    const { onDatesChange } = this.props;
+    onDatesChange(startDate, endDate);
   }
 
 
@@ -264,6 +270,10 @@ class DateRangePickerWrapper extends React.Component {
       'initialStartDate',
       'initialEndDate',
       'presets',
+      'defaultPresets',
+      'RangePresets',
+      'minYear',
+      'maxYear',
     ]);
 
     return (
@@ -291,7 +301,7 @@ class DateRangePickerWrapper extends React.Component {
           weekDayFormat="ddd"
           displayFormat="ddd MMM DD,YYYY"
           hideKeyboardShortcutsPanel
-          renderFormButtons={() => console.log('Render Form Button')}
+          // renderFormButtons={() => <FormButtons onClickApply={this.onClickApply} />}
           // showClearDate
           // customCloseIcon={<TestCustomCloseIcon />}
         />

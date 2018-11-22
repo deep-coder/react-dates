@@ -1,5 +1,5 @@
 import React from 'react';
-import TDatePicker from '../src/components/TDatePicker';
+import {TDatePicker} from '../lib';
 
 const TDatePickerWrapper = props => (
        <TDatePicker 
