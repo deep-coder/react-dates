@@ -143,6 +143,14 @@ class TDatePicker extends React.Component {
     this.onFocusChange = this.onFocusChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { initialDate } = nextProps;
+    const { initialDate: prevDate } = this.props;
+    if (initialDate !== prevDate) {
+      this.setState({ date: initialDate });
+    }
+  }
+
   onDateChange(date) {
     const { onDateSelect } = this.props;
     onDateSelect(date);
